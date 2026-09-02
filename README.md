@@ -1,4 +1,4 @@
-# WinchLabs — Portfolio
+# MehdiLabsDz — Portfolio
 
 Site professionnel de Mehdi Abdi, développeur full stack MERN en TypeScript.
 
@@ -35,20 +35,20 @@ Vérifier que l'API répond : `curl http://localhost:5000/health`
 
 ## Déploiement
 
-**Front (Netlify)** — importer le dépôt avec le `netlify.toml` à la racine.
-La configuration utilise `client` comme répertoire de base et `npm run build`
-comme commande de build. Ne pas remplacer ces réglages dans l'interface Netlify.
-Déclarer `NEXT_PUBLIC_API_URL` avec l'URL publique de l'API, sans slash final.
+**Front (Netlify)** — le `netlify.toml` à la racine pointe déjà sur `client`.
+Dans l'interface Netlify, laisser « Base directory » et « Publish directory »
+vides pour que ce fichier fasse foi, et déclarer la variable d'environnement
+`NEXT_PUBLIC_API_URL` avec l'URL publique de l'API.
 
 **Back (Render)** — service Web Node, dossier racine `server`, commande de
 démarrage `npm start`. Variables à définir : `MONGO_URI` et `CORS_ORIGINS`.
 
 ## API
 
-| Méthode | Route          | Description                                    |
-| ------- | -------------- | ---------------------------------------------- |
-| `GET`   | `/health`      | Sonde de santé du service                      |
-| `POST`  | `/api/contact` | Enregistre un message (5 envois / 15 min / IP) |
+| Méthode | Route           | Description                                   |
+| ------- | --------------- | --------------------------------------------- |
+| `GET`   | `/health`       | Sonde de santé du service                      |
+| `POST`  | `/api/contact`  | Enregistre un message (5 envois / 15 min / IP) |
 
 Le formulaire embarque un champ piège `website` : s'il est rempli, le message
 est ignoré silencieusement et la réponse reste un succès apparent.
