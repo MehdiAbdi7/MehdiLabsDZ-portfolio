@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "API du portfolio WinchLabs : réception et stockage des messages de contact.",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon .",
+    "start": "node ."
+  },
+  "keywords": [],
+  "author": "Mehdi Abdi",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "mongoose": "^9.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

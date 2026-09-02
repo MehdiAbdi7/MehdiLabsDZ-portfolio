@@ -1,0 +1,19 @@
+# Netlify lit ce fichier à la RACINE du dépôt.
+# `base` indique le sous-dossier à builder (le front Next.js).
+# On ne définit pas `publish` : le runtime Next.js de Netlify s'en charge.
+
+[build]
+  base = "client"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# En-têtes de sécurité de base pour tout le site.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
