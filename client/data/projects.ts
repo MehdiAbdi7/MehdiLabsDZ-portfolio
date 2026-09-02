@@ -69,8 +69,8 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: "winchlabs-portfolio",
-    title: "WinchLabs",
+    id: "mehdilabsdz-portfolio",
+    title: "MehdiLabsDz",
     description:
       "Mon site professionnel : front Next.js sur Netlify, API Express dédiée sur Render, formulaire de contact persisté en base.",
     longDescription:
@@ -88,7 +88,7 @@ export const projects: Project[] = [
     emoji: "🧪",
     status: "live",
     github: "https://github.com/mehdiabdi7/checkpoint-portfolio-winchlabs-nextjs",
-    demo: "https://winchlabs.netlify.app",
+    demo: "https://mehdilabsdz.netlify.app",
     featured: true,
   },
   {

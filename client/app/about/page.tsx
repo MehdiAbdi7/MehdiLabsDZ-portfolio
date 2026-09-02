@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "À propos — Mehdi Abdi | WinchLabs",
+  title: "À propos — Mehdi Abdi | MehdiLabsDz",
   description:
     "Développeur full stack MERN en TypeScript basé à Alger. Parcours, compétences et façon de travailler de Mehdi Abdi.",
 };
@@ -42,7 +42,7 @@ const timeline = [
   },
   {
     year: "2026",
-    title: "Lancement de WinchLabs en indépendant",
+    title: "Lancement de MehdiLabsDz en indépendant",
     description:
       "Inscription en auto-entrepreneur et premiers projets clients : Niwa Food, puis MB Food. Cadrage du besoin, développement, mise en production et suivi.",
     dotClass: "bg-red-500 shadow-[0_0_16px_rgba(239,68,68,0.5)]",
@@ -148,7 +148,7 @@ export default function AboutPage() {
           <p className="mx-auto max-w-150 text-lg leading-[1.8] text-muted">
             Je m&apos;appelle Mehdi Abdi. Je suis développeur full stack MERN
             en TypeScript, basé à Alger, et je développe sous la marque
-            WinchLabs des applications web pour des clients réels.
+            MehdiLabsDz des applications web pour des clients réels.
           </p>
         </div>
       </section>
@@ -207,7 +207,7 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Sous la marque{" "}
-                  <span className="font-semibold text-sky">WinchLabs</span>, je
+                  <span className="font-semibold text-sky">MehdiLabsDz</span>, je
                   développe des applications web pour des clients algériens et
                   francophones. Mon parcours de gestion me sert tous les jours :
                   comprendre un besoin réel, tenir un délai, et parler au client

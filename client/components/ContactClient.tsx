@@ -106,18 +106,16 @@ export default function ContactClient() {
     setStatus("sending");
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
-      if (!apiUrl) {
-        throw new Error("NEXT_PUBLIC_API_URL est manquante");
-      }
-
-      const response = await fetch(`${apiUrl}/api/contact`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/contact`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
         },
-        body: JSON.stringify(form),
-      });
+      );
 
       if (!response.ok) {
         throw new Error("Erreur lors de l'envoi");
@@ -165,7 +163,7 @@ export default function ContactClient() {
                   Mehdi Abdi
                 </h2>
                 <p className="mb-6 text-sm font-semibold text-sky">
-                  Développeur Full Stack MERN · WinchLabs
+                  Développeur Full Stack MERN · MehdiLabsDz
                 </p>
 
                 <div className="flex flex-col gap-4">

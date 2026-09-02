@@ -31,7 +31,7 @@ app.set("trust proxy", 1);
 // Origines autorisées, surchargeables par variable d'environnement.
 const allowedOrigins = (
   process.env.CORS_ORIGINS ||
-  "http://localhost:3000,https://winchlabs.netlify.app"
+  "http://localhost:3000,https://mehdilabsdz.netlify.app"
 )
   .split(",")
   .map((origin) => origin.trim())

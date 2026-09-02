@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "404 — Page introuvable | WinchLabs",
+  title: "404 — Page introuvable | MehdiLabsDz",
 };
 
 export default function NotFound() {

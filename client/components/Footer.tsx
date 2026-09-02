@@ -103,7 +103,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-sky/8 pt-6">
           <p className="text-[13px] text-slate-600">
-            © {year} WinchLabs · Mehdi Abdi. Tous droits réservés.
+            © {year} MehdiLabsDz · Mehdi Abdi. Tous droits réservés.
           </p>
           <p className="text-[13px] text-slate-600">
             Construit avec <span className="text-sky">Next.js</span> +{" "}

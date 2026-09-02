@@ -4,10 +4,10 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://winchlabs.netlify.app"),
-  title: "Mehdi Abdi — Développeur Full Stack | WinchLabs",
+  metadataBase: new URL("https://mehdilabsdz.netlify.app"),
+  title: "Mehdi Abdi — Développeur Full Stack | MehdiLabsDz",
   description:
-    "Développeur full stack MERN en TypeScript basé à Alger. Next.js, Node.js, Express, MongoDB. Applications web sur mesure sous la marque WinchLabs.",
+    "Développeur full stack MERN en TypeScript basé à Alger. Next.js, Node.js, Express, MongoDB. Applications web sur mesure sous la marque MehdiLabsDz.",
   keywords: [
     "développeur full stack",
     "MERN",
@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     "freelance",
   ],
   openGraph: {
-    title: "Mehdi Abdi — Développeur Full Stack | WinchLabs",
+    title: "Mehdi Abdi — Développeur Full Stack | MehdiLabsDz",
     description:
       "Développeur full stack MERN en TypeScript basé à Alger. Applications web sur mesure.",
-    url: "https://winchlabs.netlify.app",
-    siteName: "WinchLabs",
+    url: "https://mehdilabsdz.netlify.app",
+    siteName: "MehdiLabsDz",
     locale: "fr_FR",
     type: "website",
   },

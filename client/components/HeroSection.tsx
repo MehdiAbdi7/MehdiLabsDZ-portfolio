@@ -72,7 +72,7 @@ export default function HeroSection() {
 
             <h1 className="mb-4 font-space text-[clamp(36px,5vw,60px)] font-extrabold leading-[1.1] text-white">
               Je transforme des idées en applications.{" "}
-              <span className="gradient-text">WinchLabs</span>
+              <span className="gradient-text">MehdiLabsDz</span>
             </h1>
 
             {/* Animated role */}
@@ -90,7 +90,7 @@ export default function HeroSection() {
               des données, API REST sécurisées, fonctionnalités temps réel et
               interfaces réactives. Un parcours de gestion et de terrain
               derrière moi, du code en TypeScript devant, sous la marque{" "}
-              <span className="font-semibold text-sky">WinchLabs</span>.
+              <span className="font-semibold text-sky">MehdiLabsDz</span>.
             </p>
 
             {/* CTAs */}
@@ -177,7 +177,7 @@ export default function HeroSection() {
               {/* Terminal body */}
               <div className="p-6 font-mono text-sm leading-[1.9]">
                 <div className="mb-2 text-xs text-muted">
-                  👋 Bienvenue chez WinchLabs
+                  👋 Bienvenue chez MehdiLabsDz
                 </div>
                 {codeLines.slice(0, displayedLines).map((line, i) => (
                   <div key={i} className={line.color}>

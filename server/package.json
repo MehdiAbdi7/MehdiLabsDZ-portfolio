@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "API du portfolio WinchLabs : réception et stockage des messages de contact.",
+  "description": "API du portfolio MehdiLabsDz : réception et stockage des messages de contact.",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon .",

@@ -1,4 +1,4 @@
-# 🚀 WinchLabs Portfolio
+# 🚀 MehdiLabsDz Portfolio
 
 Portfolio professionnel de **Mehdi Abdi**, développeur Full Stack MERN, construit avec Next.js 16, TypeScript et Tailwind CSS v4.
 
@@ -11,7 +11,7 @@ Portfolio professionnel de **Mehdi Abdi**, développeur Full Stack MERN, constru
 
 ## ✨ Aperçu
 
-Site de portfolio moderne avec une identité visuelle **WinchLabs** — palette navy/sky blue/red, terminal animé en hero, et design dark glassmorphism.
+Site de portfolio moderne avec une identité visuelle **MehdiLabsDz** — palette navy/sky blue/red, terminal animé en hero, et design dark glassmorphism.
 
 ### Pages
 
@@ -81,8 +81,8 @@ portfolio/
 
 ```bash
 # Cloner le projet
-git clone https://github.com/mehdi7abdi/portfolio-winchlabs.git
-cd portfolio-winchlabs
+git clone https://github.com/mehdiabdi7/checkpoint-portfolio-winchlabs-nextjs.git
+cd checkpoint-portfolio-winchlabs-nextjs
 
 # Installer les dépendances
 npm install
@@ -178,14 +178,14 @@ Pour adapter le portfolio à vos informations :
 
 ## 👤 Auteur
 
-**Mehdi Abdi** — [WinchLabs](https://github.com/mehdi7abdi)
+**Mehdi Abdi** — [MehdiLabsDz](https://github.com/mehdiabdi7)
 
-- GitHub : [@mehdi7abdi](https://github.com/mehdi7abdi)
-- Email : mehdi@winchlabs.dev
+- GitHub : [@mehdi7abdi](https://github.com/mehdiabdi7)
+- Email : mehdihca@outlook.fr
 - Localisation : Alger, Algérie
 
 ---
 
 ## 📄 Licence
 
-Projet personnel — tous droits réservés © 2026 WinchLabs.
+Projet personnel — tous droits réservés © 2026 MehdiLabsDz.

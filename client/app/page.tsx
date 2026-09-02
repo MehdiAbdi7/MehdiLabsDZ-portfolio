@@ -5,7 +5,7 @@ import FeaturedProjects from "../components/FeaturedProjects";
 import CTASection from "../components/CTASection";
 
 export const metadata: Metadata = {
-  title: "Mehdi Abdi — Développeur Full Stack | WinchLabs",
+  title: "Mehdi Abdi — Développeur Full Stack | MehdiLabsDz",
   description:
     "Portfolio de Mehdi Abdi, développeur full stack MERN en TypeScript basé à Alger. Next.js, React, Node.js, Express, MongoDB.",
 };
