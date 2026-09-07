@@ -1,20 +1,61 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
+/* Variante `dark:` pilotée par l'attribut data-theme posé sur <html>,
+   et non par la préférence système : le visiteur garde la main. */
+@custom-variant dark ([data-theme="dark"] &);
+
 @theme inline {
-  --color-navy: #0a0f1e;
-  --color-navy-light: #111827;
-  --color-sky: #98d2eb;
-  --color-sky-dim: #0ea5e9;
-  --color-red: #e12826;
-  --color-white: #f8fafc;
-  --color-muted: #94a3b8;
-  --color-border: #1e293b;
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-raised: var(--raised);
+  --color-ink: var(--ink);
+  --color-soft: var(--soft);
+  --color-faint: var(--faint);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-signal: var(--signal);
+  --color-ok: var(--ok);
+
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
 }
 
-/* IMPORTANT : tout le CSS custom doit être dans un @layer
-   sinon il écrase les classes Tailwind (mb-*, gap-*, etc.)
-   quel que soit l'ordre d'écriture dans le fichier. */
+/* Thème clair — bleu brumeux et vert menthe, accordé au fond animé. */
+:root {
+  --bg: #edf4f3;
+  --surface: #e7f1f2;
+  --raised: #dcebed;
+  --ink: #0b1720;
+  --soft: #425466;
+  --faint: #6d818b;
+  --line: #cbdade;
+  --line-strong: #10232c;
+  --accent: #1769e8;
+  --on-accent: #ffffff;
+  --signal: #c24135;
+  --ok: #16805d;
+  color-scheme: light;
+}
+
+[data-theme="dark"] {
+  --bg: #08131a;
+  --surface: #0d1d26;
+  --raised: #122936;
+  --ink: #edf8f8;
+  --soft: #a9c1c6;
+  --faint: #78939c;
+  --line: #25404a;
+  --line-strong: #d6f4ef;
+  --accent: #60a5fa;
+  --on-accent: #061219;
+  --signal: #fb806c;
+  --ok: #4ade80;
+  color-scheme: dark;
+}
 
 @layer base {
   * {
@@ -27,200 +68,123 @@
     scroll-behavior: smooth;
   }
 
-  :root {
-    --font-inter:
-      "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      sans-serif;
-    --font-space:
-      "Space Grotesk", "Inter", system-ui, -apple-system, sans-serif;
-  }
-
   body {
-    background: #0a0f1e;
-    color: #f8fafc;
-    font-family: var(--font-inter);
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    transition:
+      background-color 180ms ease,
+      color 180ms ease;
   }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #0a0f1e;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #38bdf8;
-    border-radius: 3px;
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
   }
 
-  /* Selection */
-  ::selection {
-    background: #38bdf8;
-    color: #0a0f1e;
-  }
-
-  /* Focus visible */
   :focus-visible {
-    outline: 2px solid #38bdf8;
-    outline-offset: 2px;
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
   }
 
   @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
     *,
     *::before,
     *::after {
       animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
   }
 }
 
 @layer components {
-  .animate-fadeInUp {
-    animation: fadeInUp 0.6s ease forwards;
+  .velaris-backdrop {
+    opacity: 0.3;
   }
 
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
+  [data-theme="dark"] .velaris-backdrop {
+    opacity: 0.42;
   }
 
-  .animate-glow {
-    animation: glowPulse 2s ease-in-out infinite;
+  /* Panneau : l'unité de base de la mise en page. */
+  .panel {
+    background: color-mix(in srgb, var(--surface) 88%, transparent);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
   }
 
-  .cursor-blink::after {
-    content: "|";
-    animation: blink 1s step-end infinite;
-    color: #38bdf8;
+  /* Le seul effet appuyé du site : une ombre pleine, sans flou, sur
+     l'action principale. Tout le reste reste plat. */
+  .press {
+    box-shadow: 4px 4px 0 var(--line-strong);
+    transition:
+      box-shadow 140ms ease,
+      transform 140ms ease;
+  }
+  .press:hover {
+    box-shadow: 2px 2px 0 var(--line-strong);
+    transform: translate(2px, 2px);
+  }
+  .press:active {
+    box-shadow: 0 0 0 var(--line-strong);
+    transform: translate(4px, 4px);
   }
 
-  /* Gradient text */
-  .gradient-text {
-    background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #ef4444 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .rule {
+    border-top: 2px solid var(--line-strong);
   }
 
-  /* Glass card */
-  .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(56, 189, 248, 0.1);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-  }
-
-  .glass-card:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(56, 189, 248, 0.3);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 60px rgba(56, 189, 248, 0.1);
-  }
-
-  /* Noise texture overlay */
-  .noise::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.02;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Skip link */
   .skip-link {
     position: absolute;
-    top: -40px;
-    left: 0;
-    background: #38bdf8;
-    color: #0a0f1e;
-    padding: 8px;
-    z-index: 100;
-    font-weight: 700;
+    top: -60px;
+    left: 12px;
+    z-index: 200;
+    background: var(--accent);
+    color: var(--on-accent);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
   }
   .skip-link:focus {
-    top: 0;
+    top: 12px;
+  }
+
+  /* Pastille d'état : la couleur ne porte jamais l'information seule,
+     le libellé est toujours écrit à côté. */
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .dot-live {
+    background: var(--ok);
+    animation: pulse 2s ease-in-out infinite;
   }
 }
 
-/* Les @keyframes n'ont pas besoin d'être dans un @layer,
-   elles ne posent pas de problème de cascade. */
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes blink {
+@keyframes pulse {
   0%,
   100% {
     opacity: 1;
   }
   50% {
-    opacity: 0;
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes glowPulse {
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(56, 189, 248, 0.6);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes typewriter {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
+    opacity: 0.35;
   }
 }

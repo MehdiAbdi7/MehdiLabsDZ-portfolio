@@ -67,139 +67,150 @@ export default function ProjectsClient() {
 
           {/* Projects grid */}
           <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
-            {filtered.map((project, index) => (
-              <article
-                key={project.id}
-                className="glass-card overflow-hidden rounded-2xl"
-                style={{ animationDelay: `${index * 0.08}s` }}
-              >
-                {/* Card visual */}
-                <div
-                  className="relative flex h-50 items-center justify-center overflow-hidden text-[72px]"
-                  style={{
-                    background: `linear-gradient(135deg, ${project.color}15, ${project.color}05)`,
-                  }}
-                >
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: `radial-gradient(circle at 40% 40%, ${project.color}25 0%, transparent 65%)`,
-                    }}
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      backgroundImage: `linear-gradient(${project.color}08 1px, transparent 1px), linear-gradient(90deg, ${project.color}08 1px, transparent 1px)`,
-                      backgroundSize: "30px 30px",
-                    }}
-                  />
-                  <span className="relative z-10 filter-[drop-shadow(0_0_24px_rgba(255,255,255,0.15))]">
-                    {project.emoji}
-                  </span>
+            {filtered.map((project, index) =>
+              (() => {
+                const projectColor =
+                  project.status === "live"
+                    ? "#157f4a"
+                    : project.status === "wip"
+                      ? "#d97706"
+                      : "#6b8bff";
 
-                  <div className="absolute right-3 top-3 flex gap-1.5">
-                    <span
-                      className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold ${
-                        project.status === "wip"
-                          ? "border border-amber-400/30 bg-amber-400/15 text-amber-400"
-                          : project.status === "live"
-                            ? "border border-emerald-400/30 bg-emerald-400/15 text-emerald-400"
-                            : "border border-white/15 bg-white/8 text-slate-300"
-                      }`}
-                    >
-                      {statusLabels[project.status]}
-                    </span>
-                    <span
-                      className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold"
+                return (
+                  <article
+                    key={project.id}
+                    className="glass-card overflow-hidden rounded-2xl"
+                    style={{ animationDelay: `${index * 0.08}s` }}
+                  >
+                    {/* Card visual */}
+                    <div
+                      className="relative flex h-50 items-center justify-center overflow-hidden text-[72px]"
                       style={{
-                        background: `${project.color}15`,
-                        border: `1px solid ${project.color}30`,
-                        color: project.color,
+                        background: `linear-gradient(135deg, ${projectColor}15, ${projectColor}05)`,
                       }}
                     >
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Card body */}
-                <div className="p-6">
-                  <h2 className="mb-2.5 font-space text-[20px] font-bold text-slate-50">
-                    {project.title}
-                  </h2>
-                  <p className="mb-2 text-sm leading-[1.7] text-muted">
-                    {project.description}
-                  </p>
-                  <p className="mb-5 text-[13px] leading-[1.6] text-slate-500">
-                    {project.longDescription}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="mb-6 flex flex-wrap gap-1.5">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="rounded-md border border-white/10 bg-white/4 px-2.5 py-1 text-[11px] font-medium text-slate-500"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Links */}
-                  <div className="flex gap-2.5">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Code source — ${project.title}`}
-                        className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-white/10 bg-white/4 px-3 py-2.5 text-[13px] font-semibold text-muted transition-colors duration-200 hover:text-slate-50"
-                      >
-                        <svg
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="currentColor"
-                        >
-                          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                        </svg>
-                        Code
-                      </a>
-                    )}
-
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Demo — ${project.title}`}
-                        className="flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2.5 text-[13px] font-bold transition-colors duration-200"
+                      <div
+                        className="absolute inset-0"
                         style={{
-                          color: project.color,
-                          background: `${project.color}10`,
-                          border: `1px solid ${project.color}30`,
+                          background: `radial-gradient(circle at 40% 40%, ${projectColor}25 0%, transparent 65%)`,
                         }}
-                      >
-                        <svg
-                          width="14"
-                          height="14"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
+                      />
+                      <div
+                        className="absolute inset-0"
+                        style={{
+                          backgroundImage: `linear-gradient(${projectColor}08 1px, transparent 1px), linear-gradient(90deg, ${projectColor}08 1px, transparent 1px)`,
+                          backgroundSize: "30px 30px",
+                        }}
+                      />
+                      <span className="relative z-10 filter-[drop-shadow(0_0_24px_rgba(255,255,255,0.15))]">
+                        {project.title.charAt(0)}
+                      </span>
+
+                      <div className="absolute right-3 top-3 flex gap-1.5">
+                        <span
+                          className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold ${
+                            project.status === "wip"
+                              ? "border border-amber-400/30 bg-amber-400/15 text-amber-400"
+                              : project.status === "live"
+                                ? "border border-emerald-400/30 bg-emerald-400/15 text-emerald-400"
+                                : "border border-white/15 bg-white/8 text-slate-300"
+                          }`}
                         >
-                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                          <polyline points="15 3 21 3 21 9" />
-                          <line x1="10" y1="14" x2="21" y2="3" />
-                        </svg>
-                        Demo live
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </article>
-            ))}
+                          {statusLabels[project.status]}
+                        </span>
+                        <span
+                          className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold"
+                          style={{
+                            background: `${projectColor}15`,
+                            border: `1px solid ${projectColor}30`,
+                            color: projectColor,
+                          }}
+                        >
+                          {project.category}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Card body */}
+                    <div className="p-6">
+                      <h2 className="mb-2.5 font-space text-[20px] font-bold text-slate-50">
+                        {project.title}
+                      </h2>
+                      <p className="mb-2 text-sm leading-[1.7] text-muted">
+                        {project.summary}
+                      </p>
+                      <p className="mb-5 text-[13px] leading-[1.6] text-slate-500">
+                        {project.detail}
+                      </p>
+
+                      {/* Tags */}
+                      <div className="mb-6 flex flex-wrap gap-1.5">
+                        {project.stack.map((tag) => (
+                          <span
+                            key={tag}
+                            className="rounded-md border border-white/10 bg-white/4 px-2.5 py-1 text-[11px] font-medium text-slate-500"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Links */}
+                      <div className="flex gap-2.5">
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Code source — ${project.title}`}
+                            className="flex flex-1 items-center justify-center gap-1.5 rounded-[10px] border border-white/10 bg-white/4 px-3 py-2.5 text-[13px] font-semibold text-muted transition-colors duration-200 hover:text-slate-50"
+                          >
+                            <svg
+                              width="14"
+                              height="14"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                            </svg>
+                            Code
+                          </a>
+                        )}
+
+                        {project.demo && (
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Demo — ${project.title}`}
+                            className="flex flex-1 items-center justify-center gap-1.5 rounded-[10px] px-3 py-2.5 text-[13px] font-bold transition-colors duration-200"
+                            style={{
+                              color: projectColor,
+                              background: `${projectColor}10`,
+                              border: `1px solid ${projectColor}30`,
+                            }}
+                          >
+                            <svg
+                              width="14"
+                              height="14"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                            >
+                              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                              <polyline points="15 3 21 3 21 9" />
+                              <line x1="10" y1="14" x2="21" y2="3" />
+                            </svg>
+                            Demo live
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })(),
+            )}
           </div>
 
           {filtered.length === 0 && (

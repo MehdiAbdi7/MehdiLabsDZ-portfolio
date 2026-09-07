@@ -1,38 +1,49 @@
+export type Status = "live" | "wip" | "done";
+
 export interface Project {
   id: string;
   title: string;
-  description: string;
-  longDescription: string;
-  tags: string[];
-  category: string;
-  color: string;
-  emoji: string;
-  /** Étiquette d'état affichée sur la carte. */
-  status: "live" | "wip" | "done";
+  /** Ce que le projet fait, en une phrase compréhensible par un non-technicien. */
+  summary: string;
+  /** Le détail technique, pour un recruteur ou un lead développeur. */
+  detail: string;
+  /** Deux ou trois faits concrets mis en avant sur la carte. */
+  highlights: string[];
+  stack: string[];
+  category: "Full Stack" | "Frontend";
+  status: Status;
+  /** Capture d'écran 16:10 placée dans public/projects/. */
+  image: string;
+  imageAlt: string;
   github?: string;
   demo?: string;
   featured: boolean;
 }
 
-export const statusLabels: Record<Project["status"], string> = {
+export const statusLabels: Record<Status, string> = {
   live: "En ligne",
   wip: "En cours",
-  done: "Terminé",
+  done: "Livré",
 };
 
 export const projects: Project[] = [
   {
     id: "niwa-food",
     title: "Niwa Food",
-    description:
-      "Plateforme de commande multi-magasins pour une chaîne de fast food : commande client par QR code, suivi en temps réel et back-office complet.",
-    longDescription:
-      "Application Next.js unique qui sert le site vitrine, la commande client (sur place via QR code, à emporter, livraison) et le dashboard du personnel. Architecture multi-magasins : les données de chaque point de vente sont cloisonnées par un middleware de scoping, avec un compteur de commandes journalier propre à chaque magasin. Menu à variantes (tailles, formules) et groupes de suppléments configurables, dont les prix sont systématiquement recalculés côté serveur. Commandes poussées en temps réel au dashboard via Socket.io avec des rooms par magasin et un handshake authentifié JWT. Back-office : plan de salle, commandes en cours, prise de commande manuelle, CRUD du menu avec gestion du cycle de vie des images, statistiques par journée de service.",
-    tags: [
+    summary:
+      "Plateforme de commande pour une chaîne de fast food à deux magasins : le client commande depuis sa table, la cuisine voit tomber la commande en direct.",
+    detail:
+      "Une seule application Next.js sert la vitrine, la commande client et le back-office du personnel. Les données des deux points de vente sont cloisonnées par un middleware de scoping, avec un compteur de commandes journalier propre à chaque magasin. Le menu gère les tailles, les formules et les groupes de suppléments ; tous les prix sont recalculés côté serveur, jamais lus depuis le panier. Les commandes remontent au dashboard par Socket.io, avec une room par magasin et un handshake authentifié par JWT.",
+    highlights: [
+      "Deux magasins cloisonnés, un seul menu partagé",
+      "Prix recalculés côté serveur à chaque commande",
+      "Suivi client et écran cuisine en temps réel",
+    ],
+    stack: [
       "Next.js",
       "TypeScript",
-      "Tailwind CSS",
       "Redux Toolkit",
+      "RTK Query",
       "Express 5",
       "Mongoose",
       "Zod",
@@ -40,9 +51,9 @@ export const projects: Project[] = [
       "JWT",
     ],
     category: "Full Stack",
-    color: "#38BDF8",
-    emoji: "🍔",
     status: "done",
+    image: "/hero-niwa.png",
+    imageAlt: "Page de commande de Niwa Food avec le menu et le panier ouvert",
     github: "https://github.com/mehdiabdi7/niwa-food",
     demo: "https://niwa-food.vercel.app",
     featured: true,
@@ -50,11 +61,16 @@ export const projects: Project[] = [
   {
     id: "mb-food",
     title: "MB Food",
-    description:
-      "Site de commande pour un restaurant client, construit sur l'architecture de Niwa Food avec une identité visuelle sur mesure.",
-    longDescription:
-      "Déclinaison de l'architecture Niwa Food pour un second restaurant. Palette et charte graphique dérivées du logo du client, animations CSS personnalisées, jeu de données du menu d'une trentaine de produits avec variantes, et back-office adapté aux besoins de l'équipe. Projet mené de bout en bout : cadrage du besoin, modélisation du menu, développement et préparation de la mise en production.",
-    tags: [
+    summary:
+      "Site de commande d'un restaurant de street food mexicaine aux Sources, construit sur l'architecture de Niwa Food avec sa propre identité.",
+    detail:
+      "Deuxième déploiement de la même base de code pour un client différent. Charte dérivée du logo, jeu de données du menu monté avec le client, back-office adapté à une équipe plus petite. Le projet a servi de test grandeur nature : reprendre une architecture existante et la spécialiser sans la casser.",
+    highlights: [
+      "Reprise d'architecture en projet client",
+      "Menu et charte montés avec le restaurateur",
+      "Mise en production préparée avec l'équipe",
+    ],
+    stack: [
       "Next.js",
       "TypeScript",
       "Tailwind CSS",
@@ -63,50 +79,100 @@ export const projects: Project[] = [
       "MongoDB Atlas",
     ],
     category: "Full Stack",
-    color: "#F59E0B",
-    emoji: "🌮",
     status: "wip",
+    image: "/hero-mbfood.png",
+    imageAlt: "Page d'accueil de MB Food avec le menu du restaurant",
     github: "https://github.com/mehdiabdi7/mb-food",
     featured: true,
   },
   {
-    id: "mehdilabsdz-portfolio",
+    id: "hca-tech",
+    title: "HCA Tech",
+    summary:
+      "Boutique en ligne de matériel électrique : catalogue, recherche, panier et commande livrée dans les 58 wilayas.",
+    detail:
+      "Site e-commerce livré pour un client réel et toujours en ligne. Catalogue filtrable, panier persisté, tunnel de commande couvrant les 58 wilayas avec calcul des frais par zone. Démarré en HTML, CSS et JavaScript, puis repris entièrement en React quand le catalogue est devenu trop lourd à maintenir à la main.",
+    highlights: [
+      "En production chez le client",
+      "Livraison paramétrée sur les 58 wilayas",
+      "Migration d'un site statique vers React",
+    ],
+    stack: ["React", "Vite", "Tailwind CSS", "React Router", "Context API"],
+    category: "Frontend",
+    status: "live",
+    image: "/hero-hca.png",
+    imageAlt: "Catalogue produits du site HCA Tech",
+    github: "https://github.com/mehdiabdi7/hca-tech",
+    demo: "https://hca-elec.com",
+    featured: true,
+  },
+  {
+    id: "mehdilabsdz",
     title: "MehdiLabsDz",
-    description:
-      "Mon site professionnel : front Next.js sur Netlify, API Express dédiée sur Render, formulaire de contact persisté en base.",
-    longDescription:
-      "Portfolio construit avec Next.js App Router et Tailwind CSS, déployé sur Netlify. Le formulaire de contact appelle une API Express indépendante hébergée sur Render, qui valide les messages et les enregistre dans MongoDB Atlas. CORS restreint aux domaines autorisés, limitation de débit et piège à robots sur la route publique.",
-    tags: [
+    summary:
+      "Ce site : front Next.js sur Netlify, API Express dédiée sur Render, messages de contact enregistrés en base.",
+    detail:
+      "Le formulaire de contact appelle une API Express indépendante qui valide les messages et les stocke dans MongoDB Atlas. CORS restreint aux domaines autorisés, limitation à cinq envois par quart d'heure et par adresse, et champ piège pour les robots. Le thème et le carrousel que vous voyez sont gérés par Redux Toolkit.",
+    highlights: [
+      "API de contact séparée, limitée et validée",
+      "Thème clair/sombre persisté sans flash au chargement",
+      "État de l'interface géré par Redux Toolkit",
+    ],
+    stack: [
       "Next.js",
       "TypeScript",
+      "Redux Toolkit",
       "Tailwind CSS",
       "Express",
       "Mongoose",
-      "MongoDB Atlas",
     ],
     category: "Full Stack",
-    color: "#818CF8",
-    emoji: "🧪",
     status: "live",
+    image: "/hero-mehdi.png",
+    imageAlt: "Page d'accueil du portfolio MehdiLabsDz",
     github:
       "https://github.com/mehdiabdi7/checkpoint-portfolio-winchlabs-nextjs",
     demo: "https://mehdilabsdz.netlify.app",
     featured: true,
   },
   {
-    id: "hca-tech",
-    title: "HCA Tech",
-    description:
-      "Site e-commerce de matériel électronique : catalogue, filtres de recherche, panier et commande couvrant les 58 wilayas.",
-    longDescription:
-      "Site e-commerce complet pour HCA-Elec.com. Panier géré par Context API, filtrage et tri des produits, tunnel de commande couvrant les 58 wilayas algériennes, menu mobile et barre de recherche avec dropdown en portal. Démarré en HTML / CSS / JavaScript puis repris en React. Déployé sur cPanel.",
-    tags: ["React", "Vite", "Tailwind CSS", "React Router", "Context API"],
+    id: "facilite",
+    title: "Facilité",
+    summary:
+      "Gestion de la vente à crédit pour un commerce : dossiers clients, échéanciers et suivi des impayés.",
+    detail:
+      "Application multi-rôles construite autour d'un besoin très concret : suivre qui doit combien, et quand. Génération des échéanciers, relances, et tableau de bord des retards de paiement.",
+    highlights: [
+      "Échéanciers générés automatiquement",
+      "Trois rôles avec permissions distinctes",
+    ],
+    stack: ["React", "TypeScript", "Node.js", "MongoDB", "Socket.io"],
+    category: "Full Stack",
+    status: "done",
+    image: "/projects/facilite.jpg",
+    imageAlt: "Tableau de bord des échéances de l'application Facilité",
+    github: "https://github.com/mehdiabdi7",
+    featured: false,
+  },
+  {
+    id: "forkit",
+    title: "Forkit",
+    summary:
+      "Application de recettes qui m'a servi à poser mon patron de backend TypeScript, réutilisé sur tous les projets suivants.",
+    detail:
+      "Express 5 en TypeScript strict, validation Zod, authentification JWT, arborescence en couches. C'est la base que je reprends aujourd'hui à chaque nouveau projet backend.",
+    highlights: [
+      "Backend TypeScript de référence",
+      "Validation Zod sur toutes les entrées",
+    ],
+    stack: ["React", "TypeScript", "Redux Toolkit", "Express", "Zod"],
     category: "Frontend",
-    color: "#EF4444",
-    emoji: "🛒",
-    status: "live",
-    github: "https://github.com/mehdiabdi7/hca-tech",
-    demo: "https://hca-elec.com",
-    featured: true,
+    status: "done",
+    image: "/projects/forkit.jpg",
+    imageAlt: "Liste des recettes de l'application Forkit",
+    github: "https://github.com/mehdiabdi7",
+    featured: false,
   },
 ];
+
+export const featuredProjects = projects.filter((project) => project.featured);

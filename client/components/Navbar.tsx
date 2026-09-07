@@ -1,154 +1,132 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { closeMenu, setMenu } from "@/features/ui/uiSlice";
+import ThemeToggle from "./ThemeToggle";
 
-const navLinks = [
+const links = [
   { href: "/", label: "Accueil" },
-  { href: "/about", label: "À propos" },
   { href: "/projects", label: "Projets" },
+  { href: "/about", label: "Parcours" },
   { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
+  const menuOpen = useAppSelector((state) => state.ui.menuOpen);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
+    dispatch(closeMenu());
+  }, [pathname, dispatch]);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-100 border-b transition-all duration-300 ${
-        scrolled
-          ? "border-sky/10 bg-[rgba(10,15,30,0.95)] backdrop-blur-xl"
-          : "border-transparent bg-transparent"
-      }`}
-    >
+    <header className="sticky top-0 z-50 border-b border-line bg-bg/95 backdrop-blur">
       <nav
-        className="mx-auto flex h-18 max-w-300 items-center justify-between px-6"
         aria-label="Navigation principale"
+        className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5"
       >
-        {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 font-space text-[22px] font-bold"
+          className="flex items-center gap-2.5 font-display text-[17px] font-bold tracking-tight"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-linear-to-br from-sky to-red-500 text-[16px] font-black text-navy">
+          <span
+            aria-hidden="true"
+            className="flex h-8 w-8 items-center justify-center rounded-[10px] bg-accent font-display text-[15px] font-extrabold text-on-accent"
+          >
             M
           </span>
-          <span className="text-slate-50">
-            Mehdi<span className="text-sky">LabsDZ</span>
-          </span>
+          MehdiLabsDz
         </Link>
 
-        {/* Desktop links */}
-        <ul className="desktop-nav flex list-none items-center gap-2">
-          {navLinks.map((link) => (
-            <li key={link.href}>
+        <div className="hidden items-center gap-1 md:flex">
+          {links.map((link) => {
+            const active = pathname === link.href;
+            return (
               <Link
+                key={link.href}
                 href={link.href}
-                className={`inline-block rounded-lg border px-4 py-2 text-sm font-medium tracking-[0.02em] transition-all duration-200 ${
-                  pathname === link.href
-                    ? "border-sky/30 bg-sky/10 text-sky"
-                    : "border-transparent text-muted hover:border-sky/20 hover:bg-white/3 hover:text-slate-50"
+                aria-current={active ? "page" : undefined}
+                className={`rounded-[10px] px-3 py-2 text-[15px] transition-colors ${
+                  active ? "font-semibold text-ink" : "text-soft hover:text-ink"
                 }`}
               >
                 {link.label}
               </Link>
-            </li>
-          ))}
-          <li>
-            <a
-              href="/contact"
-              className="inline-block rounded-lg bg-linear-to-br from-sky to-sky-dim px-5 py-2.5 text-sm font-bold text-navy shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-transform duration-200 hover:-translate-y-0.5"
-            >
-              Embauchez-moi
-            </a>
-          </li>
-        </ul>
+            );
+          })}
+          <span aria-hidden="true" className="mx-2 h-6 w-px bg-line" />
+          <ThemeToggle />
+          <Link
+            href="/contact"
+            className="press ml-2 rounded-[10px] bg-accent px-4 py-2.5 text-[15px] font-semibold text-on-accent"
+          >
+            Discuter d&apos;un projet
+          </Link>
+        </div>
 
-        {/* Mobile burger */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-          aria-expanded={menuOpen}
-          className="mobile-burger hidden rounded-lg border border-sky/30 bg-transparent p-2 text-sky"
-        >
-          {menuOpen ? (
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            onClick={() => dispatch(setMenu(!menuOpen))}
+            aria-expanded={menuOpen}
+            aria-controls="menu-mobile"
+            aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-[12px] border border-line bg-surface"
+          >
             <svg
               width="20"
               height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              strokeWidth="2"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              aria-hidden="true"
             >
-              <line x1="18" y1="6" x2="6" y2="18" />
-              <line x1="6" y1="6" x2="18" y2="18" />
+              {menuOpen ? (
+                <path d="M6 6l12 12M18 6L6 18" />
+              ) : (
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              )}
             </svg>
-          ) : (
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-            >
-              <line x1="3" y1="6" x2="21" y2="6" />
-              <line x1="3" y1="12" x2="21" y2="12" />
-              <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-          )}
-        </button>
+          </button>
+        </div>
       </nav>
 
-      {/* Mobile menu */}
       {menuOpen && (
-        <div className="mobile-menu border-t border-sky/10 bg-[rgba(10,15,30,0.98)] px-6 pb-6 pt-4">
-          <ul className="flex list-none flex-col gap-1">
-            {navLinks.map((link) => (
+        <div
+          id="menu-mobile"
+          className="border-t border-line bg-surface px-5 py-4 md:hidden"
+        >
+          <ul className="flex flex-col gap-1">
+            {links.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`block rounded-lg px-4 py-3 text-base font-medium ${
+                  className={`block rounded-[10px] px-3 py-3 text-base ${
                     pathname === link.href
-                      ? "bg-sky/8 text-sky"
-                      : "text-slate-50"
+                      ? "bg-raised font-semibold text-ink"
+                      : "text-soft"
                   }`}
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
-            <li className="mt-3">
-              <a
-                href="/contact"
-                className="block rounded-lg bg-linear-to-br from-sky to-sky-dim px-4 py-3 text-center text-base font-bold text-navy"
-              >
-                Embauchez-moi
-              </a>
-            </li>
           </ul>
+          <Link
+            href="/contact"
+            className="press mt-4 block rounded-[10px] bg-accent px-4 py-3 text-center font-semibold text-on-accent"
+          >
+            Discuter d&apos;un projet
+          </Link>
         </div>
       )}
-
-      <style>{`
-        @media (max-width: 768px) {
-          .desktop-nav { display: none !important; }
-          .mobile-burger { display: inline-flex !important; }
-        }
-      `}</style>
     </header>
   );
 }

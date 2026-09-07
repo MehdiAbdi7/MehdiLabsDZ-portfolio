@@ -158,7 +158,7 @@ export default function ContactClient() {
           <div className="contact-grid grid items-start gap-12 lg:grid-cols-[1fr_1.6fr]">
             {/* Left info */}
             <div>
-              <div className="mb-6 rounded-[20px] border border-sky/10 bg-white/2 p-8">
+              <div className="mb-6 rounded-[18px] border border-sky/10 bg-white/2 p-8">
                 <h2 className="mb-2 font-space text-[20px] font-bold text-slate-50">
                   Mehdi Abdi
                 </h2>
@@ -219,7 +219,7 @@ export default function ContactClient() {
             </div>
 
             {/* Right: Form */}
-            <div className="rounded-[20px] border border-sky/10 bg-white/2 p-10">
+            <div className="rounded-[18px] border border-sky/10 bg-white/2 p-10">
               {status === "sent" ? (
                 <div className="py-10 text-center">
                   <div className="mb-5 text-[64px]">✅</div>
@@ -393,8 +393,9 @@ export default function ContactClient() {
                     {/* Error message */}
                     {status === "error" && (
                       <div className="rounded-[10px] border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400">
-                        Une erreur est survenue lors de l'envoi. Veuillez
-                        réessayer ou m'écrire directement à mehdihca@outlook.fr.
+                        Une erreur est survenue lors de l&apos;envoi. Veuillez
+                        réessayer ou m&apos;écrire directement à
+                        mehdihca@outlook.fr.
                       </div>
                     )}
 
