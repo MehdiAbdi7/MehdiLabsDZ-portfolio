@@ -37,7 +37,7 @@ export default function Hero() {
               Voir les projets
             </Link>
             <a
-              href="/CV-Mehdi-Abdi.pdf"
+              href="/CV.pdf"
               download
               className="rounded-[10px] border border-line-strong px-6 py-3.5 font-semibold transition-colors hover:bg-raised"
             >
