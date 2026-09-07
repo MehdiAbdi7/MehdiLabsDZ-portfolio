@@ -44,6 +44,7 @@ export const projects: Project[] = [
     emoji: "🍔",
     status: "done",
     github: "https://github.com/mehdiabdi7/niwa-food",
+    demo: "https://niwa-food.vercel.app",
     featured: true,
   },
   {
@@ -87,7 +88,8 @@ export const projects: Project[] = [
     color: "#818CF8",
     emoji: "🧪",
     status: "live",
-    github: "https://github.com/mehdiabdi7/checkpoint-portfolio-winchlabs-nextjs",
+    github:
+      "https://github.com/mehdiabdi7/checkpoint-portfolio-winchlabs-nextjs",
     demo: "https://mehdilabsdz.netlify.app",
     featured: true,
   },
