@@ -11,10 +11,10 @@ export default function Footer() {
           <div>
             <div className="mb-3 flex items-center gap-2 font-space text-[22px] font-bold">
               <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-linear-to-br from-sky to-red-500 text-[14px] font-black text-navy">
-                W
+                M
               </span>
               <span className="text-slate-50">
-                Winch<span className="text-sky">Labs</span>
+                Mehdi<span className="text-sky">LabsDZ</span>
               </span>
             </div>
             <p className="max-w-60 text-sm leading-[1.7] text-muted">

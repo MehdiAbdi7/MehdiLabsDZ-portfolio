@@ -44,10 +44,10 @@ export default function Navbar() {
           className="flex items-center gap-2 font-space text-[22px] font-bold"
         >
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-linear-to-br from-sky to-red-500 text-[16px] font-black text-navy">
-            W
+            M
           </span>
           <span className="text-slate-50">
-            Winch<span className="text-sky">Labs</span>
+            Mehdi<span className="text-sky">LabsDZ</span>
           </span>
         </Link>
 
