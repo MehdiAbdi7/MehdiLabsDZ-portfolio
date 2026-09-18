@@ -62,7 +62,7 @@ export const projects: Project[] = [
     id: "mb-food",
     title: "MB Food",
     summary:
-      "Site de commande d'un restaurant de street food mexicaine aux Sources, construit sur l'architecture de Niwa Food avec sa propre identité.",
+      "Site de commande d'un restaurant de street food mexicaine, construit sur l'architecture de Niwa Food avec sa propre identité.",
     detail:
       "Deuxième déploiement de la même base de code pour un client différent. Charte dérivée du logo, jeu de données du menu monté avec le client, back-office adapté à une équipe plus petite. Le projet a servi de test grandeur nature : reprendre une architecture existante et la spécialiser sans la casser.",
     highlights: [
