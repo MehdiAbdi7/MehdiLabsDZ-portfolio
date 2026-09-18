@@ -1,4 +1,4 @@
-# 🚀 MehdiLabsDz Portfolio
+# 🚀 MehdiAbdi Portfolio
 
 Portfolio professionnel de **Mehdi Abdi**, développeur Full Stack MERN, construit avec Next.js 16, TypeScript et Tailwind CSS v4.
 
@@ -11,7 +11,7 @@ Portfolio professionnel de **Mehdi Abdi**, développeur Full Stack MERN, constru
 
 ## ✨ Aperçu
 
-Site de portfolio moderne avec une identité visuelle **MehdiLabsDz** — palette navy/sky blue/red, terminal animé en hero, et design dark glassmorphism.
+Site de portfolio moderne avec une identité visuelle **MehdiAbdi** — palette navy/sky blue/red, terminal animé en hero, et design dark glassmorphism.
 
 ### Pages
 
@@ -178,7 +178,7 @@ Pour adapter le portfolio à vos informations :
 
 ## 👤 Auteur
 
-**Mehdi Abdi** — [MehdiLabsDz](https://github.com/mehdiabdi7)
+**Mehdi Abdi** — [MehdiAbdi](https://github.com/mehdiabdi7)
 
 - GitHub : [@mehdi7abdi](https://github.com/mehdiabdi7)
 - Email : mehdihca@outlook.fr
@@ -188,4 +188,4 @@ Pour adapter le portfolio à vos informations :
 
 ## 📄 Licence
 
-Projet personnel — tous droits réservés © 2026 MehdiLabsDz.
+Projet personnel — tous droits réservés © 2026 MehdiAbdi.

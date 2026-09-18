@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { hydrateTheme, toggleTheme, type Theme } from "./themeSlice";
 
-export const THEME_KEY = "mehdilabsdz-theme";
+export const THEME_KEY = "MehdiAbdi-theme";
 
 export function useTheme() {
   const dispatch = useAppDispatch();

@@ -1,4 +1,4 @@
-# MehdiLabsDz — Portfolio
+# MehdiAbdi — Portfolio
 
 Site professionnel de Mehdi Abdi, développeur full stack MERN en TypeScript.
 
@@ -45,10 +45,10 @@ démarrage `npm start`. Variables à définir : `MONGO_URI` et `CORS_ORIGINS`.
 
 ## API
 
-| Méthode | Route           | Description                                   |
-| ------- | --------------- | --------------------------------------------- |
-| `GET`   | `/health`       | Sonde de santé du service                      |
-| `POST`  | `/api/contact`  | Enregistre un message (5 envois / 15 min / IP) |
+| Méthode | Route          | Description                                    |
+| ------- | -------------- | ---------------------------------------------- |
+| `GET`   | `/health`      | Sonde de santé du service                      |
+| `POST`  | `/api/contact` | Enregistre un message (5 envois / 15 min / IP) |
 
 Le formulaire embarque un champ piège `website` : s'il est rempli, le message
 est ignoré silencieusement et la réponse reste un succès apparent.

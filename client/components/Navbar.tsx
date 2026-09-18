@@ -39,7 +39,7 @@ export default function Navbar() {
           >
             M
           </span>
-          MehdiLabsDz
+          MehdiAbdi
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">

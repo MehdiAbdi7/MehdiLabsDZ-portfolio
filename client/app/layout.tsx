@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Velaris from "@/components/ui/velaris";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mehdilabsdz.netlify.app"),
+  metadataBase: new URL("https://MehdiAbdi.netlify.app"),
   title: "Mehdi Abdi — Développeur full stack, Alger",
   description:
     "Je développe les applications qui font tourner un commerce : commandes, menus, équipes, suivi en temps réel. Stack MERN en TypeScript, à Alger.",
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
     title: "Mehdi Abdi — Développeur full stack, Alger",
     description:
       "Applications web sur mesure pour commerces et PME : commandes, menus, back-office, temps réel.",
-    url: "https://mehdilabsdz.netlify.app",
-    siteName: "MehdiLabsDz",
+    url: "https://MehdiAbdi.netlify.app",
+    siteName: "MehdiAbdi",
     locale: "fr_DZ",
     type: "website",
   },
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 const themeScript = `
 (function () {
   try {
-    var stored = localStorage.getItem("mehdilabsdz-theme");
+    var stored = localStorage.getItem("MehdiAbdi-theme");
     var system = window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light";

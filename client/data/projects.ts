@@ -103,12 +103,11 @@ export const projects: Project[] = [
     image: "/hero-hca.png",
     imageAlt: "Catalogue produits du site HCA Tech",
     github: "https://github.com/mehdiabdi7/hca-tech",
-    demo: "https://hca-elec.com",
     featured: true,
   },
   {
-    id: "mehdilabsdz",
-    title: "MehdiLabsDz",
+    id: "MehdiAbdi",
+    title: "MehdiAbdi",
     summary:
       "Ce site : front Next.js sur Netlify, API Express dédiée sur Render, messages de contact enregistrés en base.",
     detail:
@@ -129,49 +128,11 @@ export const projects: Project[] = [
     category: "Full Stack",
     status: "live",
     image: "/hero-mehdi.png",
-    imageAlt: "Page d'accueil du portfolio MehdiLabsDz",
+    imageAlt: "Page d'accueil du portfolio MehdiAbdi",
     github:
       "https://github.com/mehdiabdi7/checkpoint-portfolio-winchlabs-nextjs",
-    demo: "https://mehdilabsdz.netlify.app",
+    demo: "https://MehdiAbdi.netlify.app",
     featured: true,
-  },
-  {
-    id: "facilite",
-    title: "Facilité",
-    summary:
-      "Gestion de la vente à crédit pour un commerce : dossiers clients, échéanciers et suivi des impayés.",
-    detail:
-      "Application multi-rôles construite autour d'un besoin très concret : suivre qui doit combien, et quand. Génération des échéanciers, relances, et tableau de bord des retards de paiement.",
-    highlights: [
-      "Échéanciers générés automatiquement",
-      "Trois rôles avec permissions distinctes",
-    ],
-    stack: ["React", "TypeScript", "Node.js", "MongoDB", "Socket.io"],
-    category: "Full Stack",
-    status: "done",
-    image: "/projects/facilite.jpg",
-    imageAlt: "Tableau de bord des échéances de l'application Facilité",
-    github: "https://github.com/mehdiabdi7",
-    featured: false,
-  },
-  {
-    id: "forkit",
-    title: "Forkit",
-    summary:
-      "Application de recettes qui m'a servi à poser mon patron de backend TypeScript, réutilisé sur tous les projets suivants.",
-    detail:
-      "Express 5 en TypeScript strict, validation Zod, authentification JWT, arborescence en couches. C'est la base que je reprends aujourd'hui à chaque nouveau projet backend.",
-    highlights: [
-      "Backend TypeScript de référence",
-      "Validation Zod sur toutes les entrées",
-    ],
-    stack: ["React", "TypeScript", "Redux Toolkit", "Express", "Zod"],
-    category: "Frontend",
-    status: "done",
-    image: "/projects/forkit.jpg",
-    imageAlt: "Liste des recettes de l'application Forkit",
-    github: "https://github.com/mehdiabdi7",
-    featured: false,
   },
 ];
 

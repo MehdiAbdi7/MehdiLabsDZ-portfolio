@@ -72,7 +72,7 @@ export default function HeroSection() {
 
             <h1 className="mb-4 font-space text-[clamp(36px,5vw,60px)] font-extrabold leading-[1.1] text-white">
               Je transforme des idées en applications.{" "}
-              <span className="gradient-text">MehdiLabsDz</span>
+              <span className="gradient-text">MehdiAbdi</span>
             </h1>
 
             {/* Animated role */}
@@ -86,11 +86,11 @@ export default function HeroSection() {
             </div>
 
             <p className="mb-10 max-w-120 text-base leading-[1.8] text-muted">
-              Je conçois des applications web de bout en bout : modélisation
-              des données, API REST sécurisées, fonctionnalités temps réel et
+              Je conçois des applications web de bout en bout : modélisation des
+              données, API REST sécurisées, fonctionnalités temps réel et
               interfaces réactives. Un parcours de gestion et de terrain
               derrière moi, du code en TypeScript devant, sous la marque{" "}
-              <span className="font-semibold text-sky">MehdiLabsDz</span>.
+              <span className="font-semibold text-sky">MehdiAbdi</span>.
             </p>
 
             {/* CTAs */}
@@ -177,7 +177,7 @@ export default function HeroSection() {
               {/* Terminal body */}
               <div className="p-6 font-mono text-sm leading-[1.9]">
                 <div className="mb-2 text-xs text-muted">
-                  👋 Bienvenue chez MehdiLabsDz
+                  👋 Bienvenue chez MehdiAbdi
                 </div>
                 {codeLines.slice(0, displayedLines).map((line, i) => (
                   <div key={i} className={line.color}>

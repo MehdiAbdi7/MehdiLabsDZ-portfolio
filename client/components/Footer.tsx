@@ -21,7 +21,7 @@ export default function Footer() {
             >
               M
             </span>
-            MehdiLabsDz
+            MehdiAbdi
           </p>
           <p className="mt-4 max-w-[34ch] text-[15px] text-soft">
             Mehdi Abdi, développeur full stack à Alger. Applications web sur
@@ -73,7 +73,7 @@ export default function Footer() {
 
       <div className="border-t border-line">
         <p className="mx-auto max-w-6xl px-5 py-5 text-[13px] text-faint">
-          © {year} MehdiLabsDz — Mehdi Abdi
+          © {year} MehdiAbdi — Mehdi Abdi
         </p>
       </div>
     </footer>

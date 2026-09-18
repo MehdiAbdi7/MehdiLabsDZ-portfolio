@@ -31,7 +31,7 @@ const timeline = [
   },
   {
     period: "2026",
-    title: "MehdiLabsDz, en indépendant",
+    title: "MehdiAbdi, en indépendant",
     body: "Inscription en auto-entrepreneur (ANAE) et premiers projets facturés : Niwa Food puis MB Food. Cadrage, développement, mise en production et suivi.",
   },
 ];
@@ -92,7 +92,7 @@ export default function AboutPage() {
               </p>
               <p>
                 Aujourd&apos;hui je développe en MERN et TypeScript, sous la
-                marque MehdiLabsDz. Ce que j&apos;apporte à une équipe, ce
+                marque MehdiAbdi. Ce que j&apos;apporte à une équipe, ce
                 n&apos;est pas seulement du code : c&apos;est quelqu&apos;un qui
                 sait parler à un client sans jargon, qui pose les bonnes
                 questions avant de commencer, et qui a déjà l&apos;habitude

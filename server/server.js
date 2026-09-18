@@ -31,7 +31,7 @@ app.set("trust proxy", 1);
 // Origines autorisées, surchargeables par variable d'environnement.
 const allowedOrigins = (
   process.env.CORS_ORIGINS ||
-  "http://localhost:3000,https://mehdilabsdz.netlify.app"
+  "http://localhost:3000,https://MehdiAbdi.netlify.app"
 )
   .split(",")
   .map((origin) => origin.trim())
@@ -42,7 +42,8 @@ app.use(
   cors({
     origin: (origin, callback) => {
       // Pas d'origine = appel serveur à serveur ou outil type Postman.
-      if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+      if (!origin || allowedOrigins.includes(origin))
+        return callback(null, true);
       callback(new Error("Origine non autorisée par la politique CORS."));
     },
   }),

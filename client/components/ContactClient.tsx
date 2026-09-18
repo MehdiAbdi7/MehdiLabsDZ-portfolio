@@ -163,7 +163,7 @@ export default function ContactClient() {
                   Mehdi Abdi
                 </h2>
                 <p className="mb-6 text-sm font-semibold text-sky">
-                  Développeur Full Stack MERN · MehdiLabsDz
+                  Développeur Full Stack MERN · MehdiAbdi
                 </p>
 
                 <div className="flex flex-col gap-4">
