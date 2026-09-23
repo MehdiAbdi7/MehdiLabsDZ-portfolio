@@ -12,7 +12,7 @@ export interface Project {
   stack: string[];
   category: "Full Stack" | "Frontend";
   status: Status;
-  /** Capture d'écran 16:10 placée dans public/projects/. */
+  /** Capture d'écran au format 16:10, placée à la racine de public/. */
   image: string;
   imageAlt: string;
   github?: string;
@@ -86,27 +86,35 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    id: "hca-tech",
-    title: "HCA Tech",
+    id: "hca-elec",
+    title: "HCA ELEC",
     summary:
-      "Boutique en ligne de matériel électrique : catalogue, recherche, panier et commande livrée dans les 58 wilayas.",
+      "Boutique en ligne de matériel électrique et d'éclairage : catalogue filtrable, panier, et commande transmise au magasin par WhatsApp.",
     detail:
-      "Site e-commerce livré pour un client réel et toujours en ligne. Catalogue filtrable, panier persisté, tunnel de commande couvrant les 58 wilayas avec calcul des frais par zone. Démarré en HTML, CSS et JavaScript, puis repris entièrement en React quand le catalogue est devenu trop lourd à maintenir à la main.",
+      "Site e-commerce en production pour Home Connect Algérie. Next.js 16 en export statique, hébergeable sur un mutualisé sans serveur Node. Les filtres et le tri vivent dans l'URL, donc une recherche se partage par lien. Le panier ne stocke que les identifiants produits : les prix sont relus du catalogue à l'affichage, jamais figés dans le navigateur. Sans backend, la commande part en message WhatsApp pré-rempli, avec les frais de livraison calculés sur les 58 wilayas selon le mode de réception. Refonte complète du premier site de l'entreprise, écrit à l'origine en HTML, CSS et JavaScript.",
     highlights: [
-      "En production chez le client",
-      "Livraison paramétrée sur les 58 wilayas",
-      "Migration d'un site statique vers React",
+      "Refonte du premier site que j'avais livré en HTML",
+      "Livraison chiffrée sur les 58 wilayas, domicile ou bureau",
+      "Prix toujours relus du catalogue, jamais du panier",
     ],
-    stack: ["React", "Vite", "Tailwind CSS", "React Router", "Context API"],
+    stack: [
+      "Next.js 16",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Redux Toolkit",
+      "Zod",
+      "Export statique",
+    ],
     category: "Frontend",
     status: "live",
-    image: "/hero-hca.png",
-    imageAlt: "Catalogue produits du site HCA Tech",
-    github: "https://github.com/mehdiabdi7/hca-tech",
+    image: "/hero-hca-elec.png",
+    imageAlt: "Page d'accueil du site HCA ELEC — Home Connect Algérie",
+    github: "https://github.com/mehdiabdi7/hca-elec",
+    demo: "https://hca-elec.com",
     featured: true,
   },
   {
-    id: "MehdiAbdi",
+    id: "mehdiabdi",
     title: "MehdiAbdi",
     summary:
       "Ce site : front Next.js sur Netlify, API Express dédiée sur Render, messages de contact enregistrés en base.",
@@ -137,3 +145,8 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter((project) => project.featured);
+
+/** Nombre de projets actuellement en ligne : sert aux titres, jamais écrit en dur. */
+export const liveProjectsCount = projects.filter(
+  (project) => project.status === "live",
+).length;

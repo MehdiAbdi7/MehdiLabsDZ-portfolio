@@ -32,7 +32,7 @@ const timeline = [
   {
     period: "2026",
     title: "MehdiAbdi, en indépendant",
-    body: "Inscription en auto-entrepreneur (ANAE) et premiers projets facturés : Niwa Food puis MB Food. Cadrage, développement, mise en production et suivi.",
+    body: "Inscription en auto-entrepreneur (ANAE) et premiers projets facturés : Niwa Food puis MB Food. Refonte complète en Next.js du site de Home Connect Algérie, trois ans après sa première version en HTML. Cadrage, développement, mise en production et suivi.",
   },
 ];
 

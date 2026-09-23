@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
 import ProjectsGrid from "@/components/ProjectsGrid";
 import CallToAction from "@/components/CallToAction";
+import { liveProjectsCount, projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Projets — Mehdi Abdi",
   description:
-    "Applications web construites pour de vrais utilisateurs : Niwa Food, MB Food, HCA Tech, Facilité, Forkit.",
+    "Applications web construites pour de vrais utilisateurs : Niwa Food, MB Food, HCA ELEC et ce portfolio.",
 };
 
 export default function ProjectsPage() {
   return (
     <>
       <section className="mx-auto max-w-6xl px-5 pb-10 pt-14">
+        {/* Chiffres calculés depuis data/projects.ts : ajouter un projet
+            met le titre à jour sans y toucher. */}
         <h1 className="max-w-[18ch] font-display text-[clamp(34px,5.4vw,56px)] font-extrabold">
-          Six projets, quatre en production
+          {projects.length} projets, {liveProjectsCount} en ligne
         </h1>
         <p className="mt-5 max-w-[62ch] text-[17px] text-soft">
           Chaque fiche indique ce que l&apos;application fait, comment elle est
