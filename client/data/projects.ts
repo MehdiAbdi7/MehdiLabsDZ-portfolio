@@ -1,3 +1,5 @@
+import { SITE_URL } from "@/lib/site";
+
 export type Status = "live" | "wip" | "done" | "demo";
 
 export interface Project {
@@ -140,7 +142,7 @@ export const projects: Project[] = [
     imageAlt: "Page d'accueil du portfolio MehdiAbdi",
     github:
       "https://github.com/mehdiabdi7/checkpoint-portfolio-winchlabs-nextjs",
-    demo: "https://MehdiAbdi.netlify.app",
+    demo: SITE_URL,
     featured: true,
   },
 ];

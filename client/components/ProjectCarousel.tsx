@@ -29,7 +29,7 @@ export default function ProjectCarousel() {
         </h2>
         <p className="max-w-[46ch] text-[15px] text-soft">
           Quatre applications pensées pour un usage réel, du modèle de données
-          jusqu`&apos;`au déploiement.
+          jusqu&apos;au déploiement.
         </p>
       </div>
 
