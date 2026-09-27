@@ -28,8 +28,8 @@ export default function ProjectCarousel() {
           Projets récents
         </h2>
         <p className="max-w-[46ch] text-[15px] text-soft">
-          Quatre applications construites pour de vrais utilisateurs, du cadrage
-          du besoin jusqu&apos;à la mise en production.
+          Quatre applications pensées pour un usage réel, du modèle de données
+          jusqu`&apos;`au déploiement.
         </p>
       </div>
 

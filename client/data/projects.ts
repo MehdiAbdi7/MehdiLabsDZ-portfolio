@@ -1,4 +1,4 @@
-export type Status = "live" | "wip" | "done";
+export type Status = "live" | "wip" | "done" | "demo";
 
 export interface Project {
   id: string;
@@ -24,6 +24,7 @@ export const statusLabels: Record<Status, string> = {
   live: "En ligne",
   wip: "En cours",
   done: "Livré",
+  demo: "Démo",
 };
 
 export const projects: Project[] = [
@@ -51,7 +52,7 @@ export const projects: Project[] = [
       "JWT",
     ],
     category: "Full Stack",
-    status: "done",
+    status: "demo",
     image: "/hero-niwa.png",
     imageAlt: "Page de commande de Niwa Food avec le menu et le panier ouvert",
     github: "https://github.com/mehdiabdi7/niwa-food",
@@ -64,11 +65,11 @@ export const projects: Project[] = [
     summary:
       "Site de commande d'un restaurant de street food mexicaine, construit sur l'architecture de Niwa Food avec sa propre identité.",
     detail:
-      "Deuxième déploiement de la même base de code pour un client différent. Charte dérivée du logo, jeu de données du menu monté avec le client, back-office adapté à une équipe plus petite. Le projet a servi de test grandeur nature : reprendre une architecture existante et la spécialiser sans la casser.",
+      "Deuxième déclinaison de la même base de code, pour un restaurant de street food mexicaine. Charte dérivée du logo, menu d'une trentaine de produits, back-office adapté à une équipe plus petite. Le projet sert de test grandeur nature : reprendre une architecture existante et la spécialiser sans la casser.",
     highlights: [
-      "Reprise d'architecture en projet client",
-      "Menu et charte montés avec le restaurateur",
-      "Mise en production préparée avec l'équipe",
+      "Reprise d'une architecture existante",
+      "Identité visuelle dérivée du logo",
+      "Back-office adapté à une petite équipe",
     ],
     stack: [
       "Next.js",

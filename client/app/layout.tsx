@@ -4,9 +4,10 @@ import Providers from "./providers";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Velaris from "@/components/ui/velaris";
+import { SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://MehdiAbdi.netlify.app"),
+  metadataBase: new URL(SITE_URL),
   title: "Mehdi Abdi — Développeur full stack, Alger",
   description:
     "Je développe les applications qui font tourner un commerce : commandes, menus, équipes, suivi en temps réel. Stack MERN en TypeScript, à Alger.",
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
     title: "Mehdi Abdi — Développeur full stack, Alger",
     description:
       "Applications web sur mesure pour commerces et PME : commandes, menus, back-office, temps réel.",
-    url: "https://MehdiAbdi.netlify.app",
+    url: SITE_URL,
     siteName: "MehdiAbdi",
     locale: "fr_DZ",
     type: "website",
@@ -61,7 +62,7 @@ export default function RootLayout({
             height="100vh"
             speed={0.65}
             grain={0.12}
-            className="velaris-backdrop pointer-events-none !fixed !inset-0 !z-0"
+            className="velaris-backdrop pointer-events-none fixed! inset-0! z-0!"
           />
           <div className="relative z-10">
             <a href="#contenu" className="skip-link">

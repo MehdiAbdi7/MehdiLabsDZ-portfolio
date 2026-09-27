@@ -6,7 +6,7 @@ import { liveProjectsCount, projects } from "@/data/projects";
 export const metadata: Metadata = {
   title: "Projets — Mehdi Abdi",
   description:
-    "Applications web construites pour de vrais utilisateurs : Niwa Food, MB Food, HCA ELEC et ce portfolio.",
+    "Applications web full stack : Niwa Food, MB Food, HCA ELEC et ce portfolio. Chaque projet est détaillé avec son fonctionnement, sa construction et son état d'avancement.",
 };
 
 export default function ProjectsPage() {
