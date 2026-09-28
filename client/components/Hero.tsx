@@ -3,7 +3,7 @@ import OrderBoard from "./OrderBoard";
 
 const facts = [
   { label: "Basé à", value: "Alger" },
-  { label: "Disponibilité", value: "Freelance ou salarié" },
+  { label: "Recherche", value: "Premier poste en agence" },
   { label: "Stack", value: "MERN en TypeScript" },
 ];
 
@@ -11,13 +11,16 @@ export default function Hero() {
   return (
     <section className="mx-auto max-w-6xl px-5 pb-16 pt-8">
       <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
-        <div>
+        {/* min-w-0 : sans lui, une colonne de grille ne descend jamais sous la
+            largeur de son plus long mot, ce qui créait un scroll horizontal
+            sur les très petits écrans. */}
+        <div className="min-w-0">
           <p className="mb-5 inline-flex items-center gap-2 rounded-md border border-line bg-surface px-3 py-1.5 text-[13px] text-soft">
             <span aria-hidden="true" className="dot dot-live" />
-            Disponible pour un poste ou une mission
+            Disponible pour un premier poste
           </p>
 
-          <h1 className="max-w-[16ch] font-display text-[clamp(38px,6.4vw,68px)] font-extrabold">
+          <h1 className="max-w-[16ch] font-display text-[clamp(30px,6.4vw,68px)] font-extrabold">
             Je développe les applications qui font tourner un commerce.
           </h1>
 
@@ -57,7 +60,7 @@ export default function Hero() {
           </dl>
         </div>
 
-        <div className="lg:pt-6">
+        <div className="min-w-0 lg:pt-6">
           <OrderBoard />
           <p className="mt-3 text-[13px] text-faint">
             Démonstration d&apos;un flux temps réel : une mise à jour envoyée

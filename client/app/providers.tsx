@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, type ReactNode } from "react";
+import { MotionConfig } from "motion/react";
 import { Provider } from "react-redux";
 import { makeStore } from "@/store/store";
 import { useTheme } from "@/features/theme/useTheme";
@@ -19,7 +20,9 @@ export default function Providers({ children }: { children: ReactNode }) {
   return (
     <Provider store={store}>
       <ThemeSync />
-      {children}
+      {/* "user" : si le visiteur a demandé moins d'animations dans son
+          système, Motion coupe les déplacements et garde les fondus. */}
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </Provider>
   );
 }

@@ -10,8 +10,8 @@ export default function CallToAction() {
             coder.
           </h2>
           <p className="mt-3 text-[16px] text-soft">
-            Poste en équipe ou mission indépendante, à Alger ou à distance.
-            Dites-moi ce que vous voulez mettre en ligne, je vous réponds sous
+            Je cherche mon premier poste en équipe, à Alger ou à distance.
+            Écrivez-moi pour convenir d&apos;un entretien, je vous réponds sous
             24 heures.
           </p>
         </div>

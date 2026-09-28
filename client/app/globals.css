@@ -18,42 +18,48 @@
   --color-on-accent: var(--on-accent);
   --color-signal: var(--signal);
   --color-ok: var(--ok);
+  --color-prep: var(--prep);
 
   --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
 }
 
-/* Thème clair — bleu brumeux et vert menthe, accordé au fond animé. */
+/* Palette "Alger la Blanche". Clair : la chaux des façades et le bleu des
+   volets. Sombre : la baie de nuit. L'ambre (--prep) est réservé au statut
+   "En préparation" du tableau de commandes. Tous les textes dépassent un
+   contraste de 4,5:1 sur --bg et --surface. */
 :root {
-  --bg: #edf4f3;
-  --surface: #e7f1f2;
-  --raised: #dcebed;
-  --ink: #0b1720;
-  --soft: #425466;
-  --faint: #6d818b;
-  --line: #cbdade;
-  --line-strong: #10232c;
-  --accent: #1769e8;
+  --bg: #f3f5f4;
+  --surface: #fafbfa;
+  --raised: #e7eceb;
+  --ink: #0d1b2a;
+  --soft: #3e4c5b;
+  --faint: #5f6c79;
+  --line: #d3dbdc;
+  --line-strong: #0d1b2a;
+  --accent: #1e4e9c;
   --on-accent: #ffffff;
-  --signal: #c24135;
-  --ok: #16805d;
+  --signal: #b42318;
+  --ok: #17784a;
+  --prep: #a15c00;
   color-scheme: light;
 }
 
 [data-theme="dark"] {
-  --bg: #08131a;
-  --surface: #0d1d26;
-  --raised: #122936;
-  --ink: #edf8f8;
-  --soft: #a9c1c6;
-  --faint: #78939c;
-  --line: #25404a;
-  --line-strong: #d6f4ef;
-  --accent: #60a5fa;
-  --on-accent: #061219;
-  --signal: #fb806c;
-  --ok: #4ade80;
+  --bg: #0a1320;
+  --surface: #0f1c2d;
+  --raised: #16263b;
+  --ink: #edf2f7;
+  --soft: #a7b4c3;
+  --faint: #7e8b9b;
+  --line: #22344b;
+  --line-strong: #dce6f1;
+  --accent: #7fb0f5;
+  --on-accent: #07111d;
+  --signal: #ff8b7b;
+  --ok: #5cd192;
+  --prep: #f2b04a;
   color-scheme: dark;
 }
 

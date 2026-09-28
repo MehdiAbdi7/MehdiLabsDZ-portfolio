@@ -67,7 +67,9 @@ void main() {
   col = mix(col, u_colors[2], smoothstep(-0.3, 0.4, n3) * 0.6);
   col = mix(col, u_colors[3], smoothstep(0.0, 0.7, n1 * n2) * 0.5);
   col += u_colors[1] * smoothstep(0.8, 0.0, dist) * 0.3;
-  col = mix(col * 0.2, col, vignette);
+  // Les bords se fondent dans la couleur de fond : un assombrissement
+  // salissait le thème clair en gris.
+  col = mix(u_bg, col, vignette);
   float grain = fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453 + u_time);
   col += (grain - 0.5) * u_grain * 0.1;
   gl_FragColor = vec4(col, 1.0);
@@ -85,13 +87,15 @@ export interface VelarisProps {
 }
 
 const themePalettes = {
+  // Accordé à la palette "Alger la Blanche" de globals.css : bleus des
+  // volets, pierre claire, et le vert-bleu de la baie en sombre.
   light: {
-    bg: "#edf4f3",
-    colors: ["#60a5fa", "#38bdf8", "#22c55e", "#ffffff"],
+    bg: "#f3f5f4",
+    colors: ["#9dbeeb", "#c9dbf2", "#e4d8bd", "#ffffff"],
   },
   dark: {
-    bg: "#0e1114",
-    colors: ["#1d4ed8", "#2563eb", "#059669", "#111827"],
+    bg: "#0a1320",
+    colors: ["#1e4e9c", "#163a6e", "#0e4f57", "#0a1320"],
   },
 } as const;
 
@@ -184,6 +188,13 @@ const Velaris = ({
 
     let currentBg = bg ?? getPalette().bg;
     let currentColors = colors ?? getPalette().colors;
+
+    // Visiteur qui a demandé moins d'animations : une seule image fixe,
+    // redessinée uniquement quand le thème ou la taille changent.
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.max(1, Math.floor(container.clientWidth * dpr));
@@ -194,13 +205,17 @@ const Velaris = ({
     const updateTheme = () => {
       if (bg === undefined) currentBg = getPalette().bg;
       if (colors === undefined) currentColors = getPalette().colors;
+      if (reduceMotion) drawStill();
     };
     const observer = new MutationObserver(updateTheme);
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["data-theme"],
     });
-    const resizeObserver = new ResizeObserver(resize);
+    const resizeObserver = new ResizeObserver(() => {
+      resize();
+      if (reduceMotion) drawStill();
+    });
     resizeObserver.observe(container);
     resize();
 
@@ -215,10 +230,16 @@ const Velaris = ({
         new Float32Array(currentColors.slice(0, 4).flatMap(hexToRgb)),
       );
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      frame = requestAnimationFrame(render);
+      if (!reduceMotion) frame = requestAnimationFrame(render);
     };
 
     frame = requestAnimationFrame(render);
+
+    // Appelée par les observers ci-dessus, donc toujours après cette ligne.
+    const drawStill = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(render);
+    };
     return () => {
       observer.disconnect();
       resizeObserver.disconnect();
