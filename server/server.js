@@ -29,12 +29,14 @@ const PORT = process.env.PORT || 5000;
 app.set("trust proxy", 1);
 
 // Origines autorisées, surchargeables par variable d'environnement.
+// Normalisées (minuscules, sans slash final) pour correspondre à l'en-tête
+// Origin envoyé par le navigateur, sinon la requête est refusée.
 const allowedOrigins = (
   process.env.CORS_ORIGINS ||
-  "http://localhost:3000,https://MehdiAbdi.netlify.app"
+  "http://localhost:3000,https://mehdiabdi.netlify.app"
 )
   .split(",")
-  .map((origin) => origin.trim())
+  .map((origin) => origin.trim().toLowerCase().replace(/\/+$/, ""))
   .filter(Boolean);
 
 app.use(helmet());
