@@ -17,30 +17,33 @@ const timeline = [
   {
     period: "2023",
     title: "Premier site livré",
-    body: "HTML, CSS, JavaScript et Bootstrap sur mon temps libre, puis mise en ligne du site de SARL Home Connect Algérie. Premier projet livré en conditions réelles, avec un client en face.",
+    body: "HTML, CSS, JavaScript et Bootstrap sur mon temps libre, puis mise en ligne du site de SARL Home Connect Algérie, l'entreprise de matériel électrique que je cogérais avec mon frère. Premier projet en conditions réelles, au service d'une vraie activité commerciale.",
   },
   {
     period: "2025",
     title: "Formation full stack, GoMyCode",
-    body: "Stack MERN complet : React, Redux, Node.js, Express, MongoDB, Git. Une dizaine de projets d'entraînement, dont plusieurs repris ensuite en projets clients.",
+    body: "Stack MERN complet : React, Redux, Node.js, Express, MongoDB, Git. Une dizaine de projets d'entraînement pour pratiquer chaque brique de la stack.",
   },
   {
     period: "2025 – 2026",
     title: "Spécialisation Next.js et TypeScript",
-    body: "App Router, TypeScript strict, Redux Toolkit, validation Zod, temps réel avec Socket.io. Développement de Niwa Food, une plateforme de commande multi-magasins de bout en bout.",
+    body: "App Router, TypeScript strict, Redux Toolkit, validation Zod, temps réel avec Socket.io. Développement de Niwa Food, mon projet de fin de formation : une plateforme de commande multi-magasins de bout en bout.",
   },
   {
     period: "2026",
-    title: "MehdiAbdi, en indépendant",
-    body: "Inscription en auto-entrepreneur (ANAE) et premiers projets facturés : Niwa Food puis MB Food. Refonte complète en Next.js du site de Home Connect Algérie, trois ans après sa première version en HTML. Cadrage, développement, mise en production et suivi.",
+    title: "Nouveaux projets et recherche d'un premier poste",
+    body: "Refonte complète en Next.js et TypeScript du site de Home Connect Algérie, trois ans après sa première version en HTML. Développement de MB Food, une déclinaison de Niwa Food pour un restaurant de street food. Aujourd'hui, je cherche mon premier poste de développeur, idéalement en agence, pour enchaîner les projets et progresser au contact d'une équipe.",
   },
 ];
 
 const facts = [
   { label: "Formation", value: "Licence en management, puis GoMyCode" },
-  { label: "Statut", value: "Auto-entrepreneur ANAE, ouvert au salariat" },
+  {
+    label: "Statut",
+    value: "En recherche d'un premier poste, disponible immédiatement",
+  },
   { label: "Langues", value: "Français, arabe, anglais technique" },
-  { label: "Localisation", value: "Alger, mission à distance possible" },
+  { label: "Localisation", value: "Alger, télétravail possible" },
 ];
 
 export default function AboutPage() {
@@ -91,12 +94,13 @@ export default function AboutPage() {
                 problèmes qui se règlent avec un logiciel.
               </p>
               <p>
-                Aujourd&apos;hui je développe en MERN et TypeScript, sous la
-                marque MehdiAbdi. Ce que j&apos;apporte à une équipe, ce
-                n&apos;est pas seulement du code : c&apos;est quelqu&apos;un qui
-                sait parler à un client sans jargon, qui pose les bonnes
-                questions avant de commencer, et qui a déjà l&apos;habitude
-                d&apos;être responsable d&apos;une livraison.
+                Aujourd&apos;hui je développe en MERN et TypeScript, et je
+                cherche l&apos;équipe où faire mes premières armes. Ce que
+                j&apos;apporte à une équipe, ce n&apos;est pas seulement du code
+                : c&apos;est quelqu&apos;un qui sait parler à un client sans
+                jargon, qui pose les bonnes questions avant de commencer, et qui
+                a déjà l&apos;habitude d&apos;être responsable d&apos;une
+                livraison.
               </p>
             </div>
           </div>
