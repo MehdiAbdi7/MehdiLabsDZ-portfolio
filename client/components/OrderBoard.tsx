@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 
 /** Reproduit l'écran cuisine de Niwa Food : les commandes arrivent, avancent
  *  d'un statut, puis sortent de l'écran. Même vocabulaire, mêmes états que
@@ -89,7 +90,8 @@ export default function OrderBoard() {
         className="divide-y divide-line"
       >
         {orders.map((order) => (
-          <li
+          <motion.li
+            layout
             key={order.id}
             className="flex items-center gap-3 px-4 py-3.5 sm:gap-4"
           >
@@ -115,7 +117,7 @@ export default function OrderBoard() {
             >
               {STATUSES[order.status]}
             </span>
-          </li>
+          </motion.li>
         ))}
       </ul>
 
