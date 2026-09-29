@@ -28,6 +28,7 @@ const START: Order[] = [
   { id: 128, channel: "Sur place", detail: "Table 4", items: 3, status: 2 },
   { id: 129, channel: "Livraison", detail: "Garidi 2", items: 5, status: 1 },
   { id: 130, channel: "À emporter", detail: "Comptoir", items: 2, status: 0 },
+  { id: 131, channel: "Sur place", detail: "Table 11", items: 4, status: 0 },
 ];
 
 export default function OrderBoard() {
