@@ -48,7 +48,7 @@ export default function OrderBoard() {
           return [
             ...current.slice(1),
             {
-              id: id,
+              id,
               channel: slot.channel,
               detail: slot.detail,
               items: 2 + (id % 4),
