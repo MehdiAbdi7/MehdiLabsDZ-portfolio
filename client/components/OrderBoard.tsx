@@ -42,15 +42,15 @@ export default function OrderBoard() {
         // Plus rien à avancer : la commande la plus ancienne est servie
         // et une nouvelle entre en bas de pile.
         if (pending === -1) {
-          const Id = current[current.length - 1].id + 1;
-          const slot = CHANNELS[Id % CHANNELS.length];
+          const id = current[current.length - 1].id + 1;
+          const slot = CHANNELS[id % CHANNELS.length];
           return [
             ...current.slice(1),
             {
-              id: Id,
+              id: id,
               channel: slot.channel,
               detail: slot.detail,
-              items: 2 + (Id % 4),
+              items: 2 + (id % 4),
               status: 0,
             },
           ];
