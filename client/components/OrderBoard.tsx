@@ -9,6 +9,12 @@ import { AnimatePresence, motion } from "motion/react";
 
 const STATUSES = ["Reçue", "En préparation", "Prête"] as const;
 
+const STATUS_STYLES = [
+  "border-line text-faint",
+  "border-prep/40 text-prep",
+  "border-ok/40 text-ok",
+] as const;
+
 interface Order {
   id: number;
   channel: string;
@@ -113,15 +119,22 @@ export default function OrderBoard() {
                 </span>
               </span>
               <span
-                className={`shrink-0 rounded-md border px-2.5 py-1 text-[12px] font-semibold transition-colors duration-200 ${
-                  order.status === 2
-                    ? "border-ok/40 text-ok"
-                    : order.status === 1
-                      ? "border-accent/40 text-accent"
-                      : "border-line text-faint"
+                className={`shrink-0 overflow-hidden rounded-md border px-2.5 py-1 text-[12px] font-semibold transition-colors duration-300 ${
+                  STATUS_STYLES[order.status]
                 }`}
               >
-                {STATUSES[order.status]}
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={order.status}
+                    className="block"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                  >
+                    {STATUSES[order.status]}
+                  </motion.span>
+                </AnimatePresence>
               </span>
             </motion.li>
           ))}
