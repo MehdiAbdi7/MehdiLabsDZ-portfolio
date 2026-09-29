@@ -10,9 +10,9 @@ import { AnimatePresence, motion } from "motion/react";
 const STATUSES = ["Reçue", "En préparation", "Prête"] as const;
 
 const STATUS_STYLES = [
-  "border-line text-faint",
-  "border-prep/40 text-prep",
-  "border-ok/40 text-ok",
+  "border-line text-faint bg-raised",
+  "border-prep/40 text-prep bg-prep/10",
+  "border-ok/40 text-ok bg-ok/10",
 ] as const;
 
 interface Order {
@@ -37,6 +37,8 @@ const START: Order[] = [
   { id: 131, channel: "Sur place", detail: "Table 11", items: 4, status: 0 },
 ];
 
+const FIRST_ID = START[0].id;
+
 export default function OrderBoard() {
   const [orders, setOrders] = useState<Order[]>(START);
 
@@ -52,6 +54,7 @@ export default function OrderBoard() {
         if (pending === -1) {
           const id = current[current.length - 1].id + 1;
           const slot = CHANNELS[id % CHANNELS.length];
+
           return [
             ...current.slice(1),
             {
@@ -75,17 +78,31 @@ export default function OrderBoard() {
     return () => clearInterval(timer);
   }, []);
 
+  const served = orders[0].id - FIRST_ID;
+
   return (
     <div className="panel overflow-hidden">
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
         <div className="flex items-center gap-2.5">
           <span aria-hidden="true" className="dot dot-live" />
-          <span className="text-[13px] font-semibold">
-            Tableau de suivi — temps réel
-          </span>
+          <span className="text-[13px] font-semibold">Suivi des commandes</span>
         </div>
-        <span className="font-mono text-[11px] text-faint">
-          connexion temps réel
+        <span className="flex items-center gap-1.5 font-mono text-[11px] text-faint">
+          Servies
+          <span className="relative inline-flex overflow-hidden tabular-nums">
+            <AnimatePresence mode="popLayout" initial={false}>
+              <motion.span
+                key={served}
+                className="inline-block text-ok"
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                exit={{ y: "-100%" }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              >
+                {served}
+              </motion.span>
+            </AnimatePresence>
+          </span>
         </span>
       </div>
 
