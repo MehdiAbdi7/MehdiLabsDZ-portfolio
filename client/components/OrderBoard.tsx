@@ -10,9 +10,9 @@ import { AnimatePresence, motion } from "motion/react";
 const STATUSES = ["Reçue", "En préparation", "Prête"] as const;
 
 const STATUS_STYLES = [
-  "border-line text-faint bg-raised",
-  "border-prep/40 text-prep bg-prep/10",
-  "border-ok/40 text-ok bg-ok/10",
+  "border-line text-faint",
+  "border-prep/40 text-prep bg-prep/5",
+  "border-ok/40 text-ok bg-ok/5",
 ] as const;
 
 interface Order {
