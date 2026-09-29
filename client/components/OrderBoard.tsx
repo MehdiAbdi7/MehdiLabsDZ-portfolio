@@ -31,7 +31,6 @@ const START: Order[] = [
 
 export default function OrderBoard() {
   const [orders, setOrders] = useState<Order[]>(START);
-  const [nextId, setNextId] = useState(131);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -43,15 +42,15 @@ export default function OrderBoard() {
         // Plus rien à avancer : la commande la plus ancienne est servie
         // et une nouvelle entre en bas de pile.
         if (pending === -1) {
-          const slot = CHANNELS[nextId % CHANNELS.length];
-          setNextId((id) => id + 1);
+          const Id = current[current.length - 1].id + 1;
+          const slot = CHANNELS[Id % CHANNELS.length];
           return [
             ...current.slice(1),
             {
-              id: nextId,
+              id: Id,
               channel: slot.channel,
               detail: slot.detail,
-              items: 2 + (nextId % 4),
+              items: 2 + (Id % 4),
               status: 0,
             },
           ];
@@ -66,7 +65,7 @@ export default function OrderBoard() {
     }, 2400);
 
     return () => clearInterval(timer);
-  }, [nextId]);
+  }, []);
 
   return (
     <div className="panel overflow-hidden">
