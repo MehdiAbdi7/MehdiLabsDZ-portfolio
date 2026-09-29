@@ -60,7 +60,7 @@ export default function Hero() {
           </dl>
         </div>
 
-        <div className="min-w-0 lg:pt-6">
+        <div className="min-w-0 lg:self-center">
           <OrderBoard />
           <p className="mt-3 text-[13px] text-faint">
             Démonstration d&apos;un flux temps réel : une mise à jour envoyée
