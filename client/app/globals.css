@@ -68,7 +68,7 @@
   --line-strong: #15130f;
   --accent: #7a5a0f;
   --gold: #d4af37;
-  --inlay: #15130f;
+  --inlay: #1a1a1d;
   --cta: #15130f;
   --on-cta: #f6f1e7;
   --cta-icon: #d4af37;
@@ -253,10 +253,7 @@
 
   /* Grille de points décorative. */
   .dots {
-    background-image: radial-gradient(
-      var(--line-strong) 1px,
-      transparent 1px
-    );
+    background-image: radial-gradient(var(--line-strong) 1px, transparent 1px);
     background-size: 14px 14px;
   }
 
