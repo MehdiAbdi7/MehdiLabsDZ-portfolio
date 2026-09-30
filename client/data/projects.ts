@@ -14,19 +14,23 @@ export interface Project {
   stack: string[];
   category: "Full Stack" | "Frontend";
   status: Status;
-  /** Capture d'écran au format 16:10, placée à la racine de public/. */
+  /** Capture d'écran en WebP, placée à la racine de public/. */
   image: string;
   imageAlt: string;
+  /** Dépôt public du projet (ou de son front quand l'API est à part). */
   github?: string;
+  /** Dépôt public de l'API, quand elle vit dans un dépôt séparé. */
+  githubApi?: string;
   demo?: string;
+  /** Affiché sur la page d'accueil. */
   featured: boolean;
 }
 
 export const statusLabels: Record<Status, string> = {
-  live: "En ligne",
-  wip: "En cours",
-  done: "Livré",
-  demo: "Démo",
+  live: "Live",
+  wip: "In progress",
+  done: "Shipped",
+  demo: "Demo",
 };
 
 export const projects: Project[] = [
@@ -34,13 +38,13 @@ export const projects: Project[] = [
     id: "niwa-food",
     title: "Niwa Food",
     summary:
-      "Plateforme de commande pour une chaîne de fast food à deux magasins : le client commande depuis sa table, la cuisine voit tomber la commande en direct.",
+      "Ordering platform for a fast food chain with two stores: the customer orders from the table, and the kitchen sees the order arrive live.",
     detail:
-      "Une seule application Next.js sert la vitrine, la commande client et le back-office du personnel. Les données des deux points de vente sont cloisonnées par un middleware de scoping, avec un compteur de commandes journalier propre à chaque magasin. Le menu gère les tailles, les formules et les groupes de suppléments ; tous les prix sont recalculés côté serveur, jamais lus depuis le panier. Les commandes remontent au dashboard par Socket.io, avec une room par magasin et un handshake authentifié par JWT.",
+      "One Next.js app serves the public site, the customer ordering flow and the staff back-office. Data for the two stores is kept separate by a scoping middleware, with a daily order counter per store. The menu handles sizes, combos and groups of extras. All prices are recalculated on the server and never read from the cart. Orders reach the dashboard through Socket.io, with one room per store and a handshake authenticated by JWT.",
     highlights: [
-      "Deux magasins cloisonnés, un seul menu partagé",
-      "Prix recalculés côté serveur à chaque commande",
-      "Suivi client et écran cuisine en temps réel",
+      "Two separate stores, one shared menu",
+      "Prices recalculated on the server for every order",
+      "Live order tracking for the customer and the kitchen",
     ],
     stack: [
       "Next.js",
@@ -55,23 +59,52 @@ export const projects: Project[] = [
     ],
     category: "Full Stack",
     status: "demo",
-    image: "/hero-niwa.png",
-    imageAlt: "Page de commande de Niwa Food avec le menu et le panier ouvert",
-    github: "https://github.com/mehdiabdi7/niwa-food",
+    image: "/hero-niwa.webp",
+    imageAlt: "Niwa Food ordering page with the menu and the cart open",
+    github: "https://github.com/MehdiAbdi7/fastfood-frontend",
+    githubApi: "https://github.com/MehdiAbdi7/fastfood-backend",
     demo: "https://niwa-food.vercel.app",
+    featured: true,
+  },
+  {
+    id: "hca-elec",
+    title: "HCA ELEC",
+    summary:
+      "Online shop for electrical and lighting equipment: filterable catalogue, cart, and the order sent to the store through WhatsApp.",
+    detail:
+      "E-commerce site in production for Home Connect Algérie. Next.js 16 as a static export, so it can run on shared hosting without a Node server. Filters and sorting live in the URL, so a search can be shared as a link. The cart stores only product ids: prices are read again from the catalogue at display time, never frozen in the browser. With no backend, the order leaves as a pre-filled WhatsApp message, with delivery fees calculated for the 58 wilayas depending on the delivery method. A full rebuild of the company's first site, first written in HTML, CSS and JavaScript.",
+    highlights: [
+      "Rebuild of the first site I shipped in plain HTML",
+      "Delivery priced for all 58 wilayas, home or pickup point",
+      "Prices always read from the catalogue, never from the cart",
+    ],
+    stack: [
+      "Next.js 16",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Redux Toolkit",
+      "Zod",
+      "Static export",
+    ],
+    category: "Frontend",
+    status: "live",
+    image: "/hero-hca-elec.webp",
+    imageAlt: "Home page of the HCA ELEC shop, Home Connect Algérie",
+    github: "https://github.com/MehdiAbdi7/HCA-ELEC",
+    demo: "https://hca-elec.com",
     featured: true,
   },
   {
     id: "mb-food",
     title: "MB Food",
     summary:
-      "Site de commande d'un restaurant de street food mexicaine, construit sur l'architecture de Niwa Food avec sa propre identité.",
+      "Ordering site for a Mexican street food restaurant, built on the Niwa Food architecture with its own identity.",
     detail:
-      "Deuxième déclinaison de la même base de code, pour un restaurant de street food mexicaine. Charte dérivée du logo, menu d'une trentaine de produits, back-office adapté à une équipe plus petite. Le projet sert de test grandeur nature : reprendre une architecture existante et la spécialiser sans la casser.",
+      "A second version of the same codebase, for a Mexican street food restaurant. Branding derived from the logo, a menu of about thirty products, and a back-office adapted to a smaller team. The project is a real-size test: take an existing architecture and specialise it without breaking it.",
     highlights: [
-      "Reprise d'une architecture existante",
-      "Identité visuelle dérivée du logo",
-      "Back-office adapté à une petite équipe",
+      "Reuse of an existing architecture",
+      "Visual identity derived from the logo",
+      "Back-office adapted to a small team",
     ],
     stack: [
       "Next.js",
@@ -83,73 +116,46 @@ export const projects: Project[] = [
     ],
     category: "Full Stack",
     status: "wip",
-    image: "/hero-mbfood.png",
-    imageAlt: "Page d'accueil de MB Food avec le menu du restaurant",
-    github: "https://github.com/mehdiabdi7/mb-food",
+    image: "/hero-mbfood.webp",
+    imageAlt: "MB Food home page with the restaurant menu",
     featured: true,
   },
   {
-    id: "hca-elec",
-    title: "HCA ELEC",
+    id: "portfolio",
+    title: "This portfolio",
     summary:
-      "Boutique en ligne de matériel électrique et d'éclairage : catalogue filtrable, panier, et commande transmise au magasin par WhatsApp.",
+      "This site: a Next.js front end on Netlify, a dedicated Express API on Render, and contact messages stored in a database.",
     detail:
-      "Site e-commerce en production pour Home Connect Algérie. Next.js 16 en export statique, hébergeable sur un mutualisé sans serveur Node. Les filtres et le tri vivent dans l'URL, donc une recherche se partage par lien. Le panier ne stocke que les identifiants produits : les prix sont relus du catalogue à l'affichage, jamais figés dans le navigateur. Sans backend, la commande part en message WhatsApp pré-rempli, avec les frais de livraison calculés sur les 58 wilayas selon le mode de réception. Refonte complète du premier site de l'entreprise, écrit à l'origine en HTML, CSS et JavaScript.",
+      "The contact form calls a separate Express API that validates messages and stores them in MongoDB Atlas. CORS is restricted to allowed domains, sending is limited to five messages per quarter hour per address, and a hidden field traps bots. The theme, the mobile menu and the project filter are managed by Redux Toolkit. The live order board on the home page is animated with Motion.",
     highlights: [
-      "Refonte du premier site que j'avais livré en HTML",
-      "Livraison chiffrée sur les 58 wilayas, domicile ou bureau",
-      "Prix toujours relus du catalogue, jamais du panier",
-    ],
-    stack: [
-      "Next.js 16",
-      "TypeScript",
-      "Tailwind CSS v4",
-      "Redux Toolkit",
-      "Zod",
-      "Export statique",
-    ],
-    category: "Frontend",
-    status: "live",
-    image: "/hero-hca-elec.png",
-    imageAlt: "Page d'accueil du site HCA ELEC — Home Connect Algérie",
-    github: "https://github.com/mehdiabdi7/hca-elec",
-    demo: "https://hca-elec.com",
-    featured: true,
-  },
-  {
-    id: "mehdiabdi",
-    title: "MehdiAbdi",
-    summary:
-      "Ce site : front Next.js sur Netlify, API Express dédiée sur Render, messages de contact enregistrés en base.",
-    detail:
-      "Le formulaire de contact appelle une API Express indépendante qui valide les messages et les stocke dans MongoDB Atlas. CORS restreint aux domaines autorisés, limitation à cinq envois par quart d'heure et par adresse, et champ piège pour les robots. Le thème et le carrousel que vous voyez sont gérés par Redux Toolkit.",
-    highlights: [
-      "API de contact séparée, limitée et validée",
-      "Thème clair/sombre persisté sans flash au chargement",
-      "État de l'interface géré par Redux Toolkit",
+      "Separate contact API, rate limited and validated",
+      "Light and dark themes saved with no flash on load",
+      "Interface state managed by Redux Toolkit",
     ],
     stack: [
       "Next.js",
       "TypeScript",
       "Redux Toolkit",
       "Tailwind CSS",
+      "Motion",
       "Express",
       "Mongoose",
     ],
     category: "Full Stack",
     status: "live",
-    image: "/hero-mehdi.png",
-    imageAlt: "Page d'accueil du portfolio MehdiAbdi",
-    github:
-      "https://github.com/mehdiabdi7/checkpoint-portfolio-winchlabs-nextjs",
+    image: "/hero-mehdi.webp",
+    imageAlt: "Home page of Mehdi Abdi's portfolio",
+    github: "https://github.com/MehdiAbdi7/MehdiLabsDZ-portfolio",
     demo: SITE_URL,
-    featured: true,
+    featured: false,
   },
 ];
 
 export const featuredProjects = projects.filter((project) => project.featured);
 
-/** Nombre de projets actuellement en ligne : sert aux titres, jamais écrit en dur. */
-export const liveProjectsCount = projects.filter(
-  (project) => project.status === "live",
+/** Nombre de projets visitables en ligne (ceux qui ont un lien `demo`).
+ *  Sert au titre de la page Projects et au chiffre de l'accueil : jamais
+ *  écrit en dur, donc les deux ne peuvent pas se contredire. */
+export const onlineProjectsCount = projects.filter(
+  (project) => project.demo,
 ).length;
