@@ -14,7 +14,7 @@ export function useTheme() {
   //    script anti-flash du layout, et on la fait entrer dans le store.
   useEffect(() => {
     const current =
-      (document.documentElement.dataset.theme as Theme | undefined) ?? "light";
+      (document.documentElement.dataset.theme as Theme | undefined) ?? "dark";
     dispatch(hydrateTheme(current));
   }, [dispatch]);
 
