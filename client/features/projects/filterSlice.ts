@@ -1,12 +1,12 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-export type Filter = "Tous" | "Full Stack" | "Frontend";
+export type Filter = "All" | "Full Stack" | "Frontend";
 
 interface FilterState {
   active: Filter;
 }
 
-const initialState: FilterState = { active: "Tous" };
+const initialState: FilterState = { active: "All" };
 
 const filterSlice = createSlice({
   name: "projectFilter",

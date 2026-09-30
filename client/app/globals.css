@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap");
 @import "tailwindcss";
 
 /* Variante `dark:` pilotée par l'attribut data-theme posé sur <html>,
@@ -15,52 +14,68 @@
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
-  --color-on-accent: var(--on-accent);
+  --color-gold: var(--gold);
+  --color-inlay: var(--inlay);
+  --color-cta: var(--cta);
+  --color-on-cta: var(--on-cta);
   --color-signal: var(--signal);
   --color-ok: var(--ok);
   --color-prep: var(--prep);
 
-  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-sans: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
-  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  /* --font-jakarta et --font-jbmono sont posées sur <html> par next/font
+     (voir app/layout.tsx). */
+  --font-display: var(--font-jakarta), "Helvetica Neue", Arial, sans-serif;
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jbmono), "SFMono-Regular", Consolas, monospace;
 }
 
-/* Palette "Alger la Blanche". Clair : la chaux des façades et le bleu des
-   volets. Sombre : la baie de nuit. L'ambre (--prep) est réservé au statut
-   "En préparation" du tableau de commandes. Tous les textes dépassent un
-   contraste de 4,5:1 sur --bg et --surface. */
-:root {
-  --bg: #f3f5f4;
-  --surface: #fafbfa;
-  --raised: #e7eceb;
-  --ink: #0d1b2a;
-  --soft: #3e4c5b;
-  --faint: #5f6c79;
-  --line: #d3dbdc;
-  --line-strong: #0d1b2a;
-  --accent: #1e4e9c;
-  --on-accent: #ffffff;
-  --signal: #b42318;
-  --ok: #17784a;
-  --prep: #a15c00;
-  color-scheme: light;
-}
-
+/* Sombre (thème par défaut) : laque noire, l'or en petites touches.
+   Tous les textes dépassent un contraste de 4,5:1 sur --bg, --surface
+   et --raised. */
+:root,
 [data-theme="dark"] {
-  --bg: #0a1320;
-  --surface: #0f1c2d;
-  --raised: #16263b;
-  --ink: #edf2f7;
-  --soft: #a7b4c3;
-  --faint: #7e8b9b;
-  --line: #22344b;
-  --line-strong: #dce6f1;
-  --accent: #7fb0f5;
-  --on-accent: #07111d;
+  --bg: #0a0a0b;
+  --surface: #121214;
+  --raised: #1a1a1d;
+  --ink: #f5f2ea;
+  --soft: #b8b3a7;
+  --faint: #8f8a7e;
+  --line: #2a2a2e;
+  --line-strong: #5a5a60;
+  --accent: #d4af37;
+  --gold: #d4af37;
+  --inlay: #121214;
+  --cta: #d4af37;
+  --on-cta: #0a0a0b;
+  --cta-icon: #0a0a0b;
   --signal: #ff8b7b;
   --ok: #5cd192;
-  --prep: #f2b04a;
+  --prep: #d4af37;
   color-scheme: dark;
+}
+
+/* Clair : papier ivoire et encre noire. L'or pur (--gold) n'a que 2,15:1
+   sur l'ivoire : il est réservé aux filets et aux incrustations noires.
+   Le texte d'accent passe en bronze (--accent). */
+[data-theme="light"] {
+  --bg: #f6f1e7;
+  --surface: #fffdf8;
+  --raised: #ece5d6;
+  --ink: #15130f;
+  --soft: #4a453b;
+  --faint: #6b6557;
+  --line: #ddd3bf;
+  --line-strong: #15130f;
+  --accent: #7a5a0f;
+  --gold: #d4af37;
+  --inlay: #15130f;
+  --cta: #15130f;
+  --on-cta: #f6f1e7;
+  --cta-icon: #d4af37;
+  --signal: #b42318;
+  --ok: #17784a;
+  --prep: #7a5a0f;
+  color-scheme: light;
 }
 
 @layer base {
@@ -91,17 +106,24 @@
   h3 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
-    line-height: 1.05;
+    line-height: 1.1;
+  }
+
+  /* L'en-tête est collant : sans cette marge, une ancre (/#skills,
+     /projects#niwa-food) arriverait cachée dessous. */
+  section[id],
+  article[id] {
+    scroll-margin-top: 88px;
   }
 
   :focus-visible {
-    outline: 3px solid var(--accent);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
   }
 
   ::selection {
-    background: var(--accent);
-    color: var(--on-accent);
+    background: var(--gold);
+    color: #0a0a0b;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -119,41 +141,123 @@
 }
 
 @layer components {
-  .velaris-backdrop {
-    opacity: 0.3;
-  }
-
-  [data-theme="dark"] .velaris-backdrop {
-    opacity: 0.42;
-  }
-
-  /* Panneau : l'unité de base de la mise en page. */
-  .panel {
-    background: color-mix(in srgb, var(--surface) 88%, transparent);
+  /* Carte : l'unité de base de la mise en page. */
+  .card {
+    background: var(--surface);
     border: 1px solid var(--line);
     border-radius: 14px;
-    backdrop-filter: blur(12px);
   }
 
-  /* Le seul effet appuyé du site : une ombre pleine, sans flou, sur
-     l'action principale. Tout le reste reste plat. */
-  .press {
-    box-shadow: 4px 4px 0 var(--line-strong);
+  /* Le filet passe à l'or au survol : réservé aux cartes cliquables. */
+  .card-hover {
+    transition: border-color 160ms ease;
+  }
+  .card-hover:hover {
+    border-color: var(--gold);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+    cursor: pointer;
     transition:
       box-shadow 140ms ease,
-      transform 140ms ease;
+      background-color 140ms ease,
+      border-color 140ms ease;
   }
-  .press:hover {
-    box-shadow: 2px 2px 0 var(--line-strong);
-    transform: translate(2px, 2px);
+  .btn svg {
+    flex-shrink: 0;
+    transition: transform 140ms ease;
   }
-  .press:active {
-    box-shadow: 0 0 0 var(--line-strong);
-    transform: translate(4px, 4px);
+  .btn:hover .btn-arrow {
+    transform: translate(2px, -2px);
   }
 
-  .rule {
-    border-top: 2px solid var(--line-strong);
+  .btn-primary {
+    background: var(--cta);
+    color: var(--on-cta);
+  }
+  .btn-primary svg {
+    color: var(--cta-icon);
+  }
+  .btn-primary:hover {
+    box-shadow:
+      0 0 0 2px var(--bg),
+      0 0 0 3px var(--gold);
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+  }
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    background: var(--raised);
+  }
+
+  /* Étiquette de section, au-dessus des titres. */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Incrustation : un bandeau de laque noire, y compris en thème clair.
+     Les variables sont redéfinies localement, donc les classes habituelles
+     (text-ink, text-soft, border-line...) restent lisibles à l'intérieur. */
+  .inlay {
+    --surface: #1a1a1d;
+    --raised: #222226;
+    background: var(--inlay);
+    color: var(--ink);
+  }
+  [data-theme="light"] .inlay {
+    --bg: #15130f;
+    --surface: #1d1a15;
+    --raised: #262219;
+    --ink: #f6f1e7;
+    --soft: #d9d3c4;
+    --faint: #a39c8c;
+    --line: #3a352b;
+    --line-strong: #6a6354;
+    --accent: #d4af37;
+    --cta: #d4af37;
+    --on-cta: #0a0a0b;
+    --cta-icon: #0a0a0b;
+    --ok: #5cd192;
+    --prep: #d4af37;
+  }
+
+  /* Petit carré à filet doré qui porte une icône. Utilisé seulement
+     sur fond noir (incrustations), là où l'or est lisible. */
+  .tile {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    place-items: center;
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    color: var(--gold);
+  }
+
+  /* Grille de points décorative. */
+  .dots {
+    background-image: radial-gradient(
+      var(--line-strong) 1px,
+      transparent 1px
+    );
+    background-size: 14px 14px;
   }
 
   .skip-link {
@@ -161,8 +265,8 @@
     top: -60px;
     left: 12px;
     z-index: 200;
-    background: var(--accent);
-    color: var(--on-accent);
+    background: var(--cta);
+    color: var(--on-cta);
     padding: 10px 16px;
     border-radius: 8px;
     font-weight: 600;

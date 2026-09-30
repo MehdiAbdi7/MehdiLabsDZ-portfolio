@@ -10,7 +10,7 @@ interface ThemeState {
   hydrated: boolean;
 }
 
-const initialState: ThemeState = { mode: "light", hydrated: false };
+const initialState: ThemeState = { mode: "dark", hydrated: false };
 
 const themeSlice = createSlice({
   name: "theme",

@@ -5,9 +5,9 @@ import { AnimatePresence, motion } from "motion/react";
 
 /** Reproduit l'écran cuisine de Niwa Food : les commandes arrivent, avancent
  *  d'un statut, puis sortent de l'écran. Même vocabulaire, mêmes états que
- *  l'application réelle — c'est la démonstration, pas une décoration. */
+ *  l'application réelle : c'est la démonstration, pas une décoration. */
 
-const STATUSES = ["Reçue", "En préparation", "Prête"] as const;
+const STATUSES = ["Received", "Preparing", "Ready"] as const;
 
 const STATUS_STYLES = [
   "border-line text-faint",
@@ -24,17 +24,16 @@ interface Order {
 }
 
 const CHANNELS = [
-  { channel: "Sur place", detail: "Table 4" },
-  { channel: "À emporter", detail: "Comptoir" },
-  { channel: "Livraison", detail: "Garidi 2" },
-  { channel: "Sur place", detail: "Table 11" },
+  { channel: "Dine in", detail: "Table 4" },
+  { channel: "Takeaway", detail: "Counter" },
+  { channel: "Delivery", detail: "Garidi 2" },
+  { channel: "Dine in", detail: "Table 11" },
 ];
 
 const START: Order[] = [
-  { id: 128, channel: "Sur place", detail: "Table 4", items: 3, status: 2 },
-  { id: 129, channel: "Livraison", detail: "Garidi 2", items: 5, status: 1 },
-  { id: 130, channel: "À emporter", detail: "Comptoir", items: 2, status: 0 },
-  { id: 131, channel: "Sur place", detail: "Table 11", items: 4, status: 0 },
+  { id: 128, channel: "Dine in", detail: "Table 4", items: 3, status: 2 },
+  { id: 129, channel: "Delivery", detail: "Garidi 2", items: 5, status: 1 },
+  { id: 130, channel: "Takeaway", detail: "Counter", items: 2, status: 0 },
 ];
 
 const FIRST_ID = START[0].id;
@@ -81,14 +80,14 @@ export default function OrderBoard() {
   const served = orders[0].id - FIRST_ID;
 
   return (
-    <div className="panel overflow-hidden">
+    <div className="card overflow-hidden">
       <div className="flex items-center justify-between border-b border-line px-4 py-3">
         <div className="flex items-center gap-2.5">
           <span aria-hidden="true" className="dot dot-live" />
-          <span className="text-[13px] font-semibold">Suivi des commandes</span>
+          <span className="text-[13px] font-semibold">Live orders</span>
         </div>
         <span className="flex items-center gap-1.5 font-mono text-[11px] text-faint">
-          Servies
+          Served
           <span className="relative inline-flex overflow-hidden tabular-nums">
             <AnimatePresence mode="popLayout" initial={false}>
               <motion.span
@@ -110,7 +109,7 @@ export default function OrderBoard() {
         // Les changements sont annoncés poliment aux lecteurs d'écran plutôt
         // que d'interrompre la lecture de la page.
         aria-live="polite"
-        aria-label="Commandes en cours, mise à jour automatique"
+        aria-label="Orders in progress, updated automatically"
         className="relative divide-y divide-line"
       >
         <AnimatePresence initial={false} mode="popLayout">
@@ -122,9 +121,9 @@ export default function OrderBoard() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -24 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
-              className="flex items-center gap-3 px-4 py-3.5 sm:gap-4"
+              className="flex items-center gap-3 px-4 py-3.5"
             >
-              <span className="w-14 shrink-0 font-mono text-[15px] font-medium tabular-nums">
+              <span className="w-12 shrink-0 font-mono text-[14px] font-medium tabular-nums">
                 #{order.id}
               </span>
               <span className="min-w-0 flex-1">
@@ -132,7 +131,7 @@ export default function OrderBoard() {
                   {order.channel}
                 </span>
                 <span className="block truncate text-[13px] text-faint">
-                  {order.detail} — {order.items} articles
+                  {order.detail} · {order.items} items
                 </span>
               </span>
               <span
@@ -159,7 +158,7 @@ export default function OrderBoard() {
       </ul>
 
       <p className="border-t border-line bg-raised px-4 py-2.5 font-mono text-[11px] leading-relaxed text-faint">
-        Socket.io — 3 écrans synchronisés en direct
+        Socket.io · 3 screens in sync
       </p>
     </div>
   );

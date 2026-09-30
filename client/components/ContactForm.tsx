@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { profile } from "@/data/profile";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -13,13 +14,13 @@ export default function ContactForm() {
 
   const validate = () => {
     const next: Record<string, string> = {};
-    if (!form.name.trim()) next.name = "Indiquez votre nom.";
-    if (!form.email.trim()) next.email = "Indiquez votre email.";
+    if (!form.name.trim()) next.name = "Enter your name.";
+    if (!form.email.trim()) next.email = "Enter your email.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email))
-      next.email = "Cet email n'a pas un format valide.";
-    if (!form.subject.trim()) next.subject = "Indiquez un sujet.";
+      next.email = "This email format is not valid.";
+    if (!form.subject.trim()) next.subject = "Enter a subject.";
     if (form.message.trim().length < 20)
-      next.message = "Le message doit faire au moins 20 caractères.";
+      next.message = "The message must be at least 20 characters.";
     return next;
   };
 
@@ -38,7 +39,7 @@ export default function ContactForm() {
           body: JSON.stringify(form),
         },
       );
-      if (!response.ok) throw new Error("Envoi refusé par le serveur");
+      if (!response.ok) throw new Error("The server refused the message");
       setForm(empty);
       setStatus("sent");
     } catch (error) {
@@ -48,34 +49,32 @@ export default function ContactForm() {
   };
 
   const fieldClass = (hasError: boolean) =>
-    `w-full rounded-[10px] border bg-surface px-3.5 py-3 text-[15px] text-ink outline-none transition-colors placeholder:text-faint ${
-      hasError ? "border-signal" : "border-line focus:border-line-strong"
+    `w-full rounded-[10px] border bg-bg px-3.5 py-3 text-[15px] text-ink outline-none transition-colors placeholder:text-faint ${
+      hasError ? "border-signal" : "border-line focus:border-gold"
     }`;
 
   if (status === "sent") {
     return (
-      <div className="panel p-8">
-        <h2 className="font-display text-[22px] font-bold">Message envoyé</h2>
+      <div className="card p-8">
+        <h2 className="text-[22px] font-bold">Message sent</h2>
         <p className="mt-3 max-w-[52ch] text-[15px] text-soft">
-          Je réponds sous 24 heures en général. Si c&apos;est urgent, écrivez
-          directement à mehdiabdi.dev@outlook.fr.
+          I usually reply within 24 hours. If it is urgent, write directly to{" "}
+          {profile.email}.
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-6 cursor-pointer rounded-[10px] border border-line-strong px-5 py-2.5 font-semibold"
+          className="btn btn-ghost mt-6"
         >
-          Écrire un autre message
+          Write another message
         </button>
       </div>
     );
   }
 
   return (
-    <div className="panel p-6 sm:p-8">
-      <h2 className="font-display text-[22px] font-bold">
-        Parlez-moi de votre projet
-      </h2>
+    <div className="card p-6 sm:p-8">
+      <h2 className="text-[22px] font-bold">Send me a message</h2>
 
       <div className="mt-6 flex flex-col gap-5">
         {/* Piège à robots : invisible, jamais rempli par un humain. */}
@@ -98,7 +97,7 @@ export default function ContactForm() {
               htmlFor="name"
               className="mb-2 block text-[14px] font-medium"
             >
-              Nom
+              Name
             </label>
             <input
               id="name"
@@ -106,6 +105,7 @@ export default function ContactForm() {
               onChange={(event) =>
                 setForm({ ...form, name: event.target.value })
               }
+              autoComplete="name"
               aria-invalid={!!errors.name}
               aria-describedby={errors.name ? "name-error" : undefined}
               className={fieldClass(!!errors.name)}
@@ -135,6 +135,7 @@ export default function ContactForm() {
               onChange={(event) =>
                 setForm({ ...form, email: event.target.value })
               }
+              autoComplete="email"
               aria-invalid={!!errors.email}
               aria-describedby={errors.email ? "email-error" : undefined}
               className={fieldClass(!!errors.email)}
@@ -156,7 +157,7 @@ export default function ContactForm() {
             htmlFor="subject"
             className="mb-2 block text-[14px] font-medium"
           >
-            Sujet
+            Subject
           </label>
           <input
             id="subject"
@@ -164,7 +165,7 @@ export default function ContactForm() {
             onChange={(event) =>
               setForm({ ...form, subject: event.target.value })
             }
-            placeholder="Recrutement, site de commande, refonte…"
+            placeholder="Hiring, ordering site, redesign..."
             aria-invalid={!!errors.subject}
             aria-describedby={errors.subject ? "subject-error" : undefined}
             className={fieldClass(!!errors.subject)}
@@ -194,7 +195,7 @@ export default function ContactForm() {
             onChange={(event) =>
               setForm({ ...form, message: event.target.value })
             }
-            placeholder="Ce que vous voulez mettre en ligne, pour quand, et avec quel budget si vous l'avez déjà en tête."
+            placeholder="What you need, when you need it, and any detail that helps me answer."
             aria-invalid={!!errors.message}
             aria-describedby={errors.message ? "message-error" : "message-hint"}
             className={`${fieldClass(!!errors.message)} resize-y`}
@@ -209,7 +210,7 @@ export default function ContactForm() {
             </p>
           ) : (
             <p id="message-hint" className="mt-1.5 text-[13px] text-faint">
-              Vingt caractères minimum.
+              Twenty characters minimum.
             </p>
           )}
         </div>
@@ -219,8 +220,8 @@ export default function ContactForm() {
             role="alert"
             className="rounded-[10px] border border-signal px-4 py-3 text-[14px] text-signal"
           >
-            Le message n&apos;est pas parti. Réessayez dans un instant, ou
-            écrivez à mehdiabdi.dev@outlook.fr.
+            The message was not sent. Try again in a moment, or write to{" "}
+            {profile.email}.
           </p>
         )}
 
@@ -229,13 +230,13 @@ export default function ContactForm() {
           onClick={submit}
           disabled={status === "sending"}
           aria-busy={status === "sending"}
-          className={`press rounded-[10px] px-6 py-3.5 font-semibold ${
+          className={`btn py-3.5 ${
             status === "sending"
-              ? "cursor-not-allowed bg-faint text-on-accent"
-              : "cursor-pointer bg-accent text-on-accent"
+              ? "cursor-not-allowed bg-raised text-soft"
+              : "btn-primary"
           }`}
         >
-          {status === "sending" ? "Envoi en cours" : "Envoyer le message"}
+          {status === "sending" ? "Sending" : "Send message"}
         </button>
       </div>
     </div>
