@@ -15,7 +15,7 @@ export const profile = {
   cvLabel: "Download CV (FR)",
   /** Chemin du portrait dans public/, ou null tant qu'il n'existe pas.
    *  Avec null, le hero affiche les initiales à la place. */
-  photo: null as string | null,
+  photo: "/portrait.webp" as string | null,
 };
 
 export type StatIcon = "calendar" | "rocket" | "gauge" | "languages";

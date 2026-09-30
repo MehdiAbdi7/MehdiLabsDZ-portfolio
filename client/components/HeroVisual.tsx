@@ -23,7 +23,7 @@ export default function HeroVisual() {
         {profile.photo ? (
           <Image
             src={profile.photo}
-            alt={`Portrait of ${profile.name}`}
+            alt={`Illustrated portrait of ${profile.name}`}
             fill
             sizes="(max-width: 640px) 240px, 330px"
             className="object-cover"
