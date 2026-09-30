@@ -1,68 +1,68 @@
+import SectionLabel from "./SectionLabel";
+
 const rows = [
   {
-    field: "Recevoir un client et comprendre ce qu'il veut vraiment",
-    code: "Traduire un besoin métier en modèle de données et en écrans, avant d'écrire la première ligne.",
+    field: "Meet a client and understand what they really want",
+    code: "Turn a business need into a data model and screens before writing the first line.",
   },
   {
-    field: "Chiffrer un chantier et s'engager sur une date",
-    code: "Découper en lots, livrer une première version utilisable, puis itérer plutôt que promettre le tout d'un coup.",
+    field: "Price a job and commit to a date",
+    code: "Split the work into parts, ship a first usable version, then iterate instead of promising everything at once.",
   },
   {
-    field: "Coordonner une équipe et un fournisseur sur site",
-    code: "Travailler en Git avec des branches lisibles, un historique propre et des messages qu'un autre développeur peut suivre.",
+    field: "Coordinate a team and a supplier on site",
+    code: "Work in Git with readable branches, a clean history and messages another developer can follow.",
   },
   {
-    field: "Former le client à son installation et rester joignable",
-    code: "Livrer un back-office qu'un employé prend en main sans formation longue, et assurer le suivi après la mise en ligne.",
+    field: "Train the client on their installation and stay reachable",
+    code: "Deliver a back-office a staff member can use without long training, and follow up after launch.",
   },
   {
-    field: "Assumer une erreur devant un client qui a payé",
-    code: "Dire ce qui ne marche pas et sous quel délai c'est corrigé, plutôt que de le découvrir en production.",
+    field: "Own a mistake in front of a client who paid",
+    code: "Say what does not work and when it will be fixed, instead of finding out in production.",
   },
 ];
 
 export default function FieldToCode() {
   return (
-    <section className="border-y border-line bg-surface">
-      <div className="mx-auto max-w-6xl px-5 py-16">
-        <div className="mb-9 max-w-[62ch]">
-          <h2 className="font-display text-[clamp(28px,4vw,42px)] font-extrabold">
-            Six ans de terrain avant la première ligne de code
-          </h2>
-          <p className="mt-4 text-[17px] text-soft">
-            Licence en management, agent commercial puis directeur technique au
-            sein du Groupe ABDI : cahiers des charges, chantiers
-            d&apos;électricité et de domotique, équipes à coordonner, clients à
-            tenir. Ce passé ne remplace pas les compétences techniques — il
-            décide de ce que je fais avec.
+    <section className="mx-auto max-w-6xl px-5 py-20">
+      <div className="mb-9 max-w-[62ch]">
+        <SectionLabel>From the field to code</SectionLabel>
+        <h2 className="mt-3 text-[clamp(27px,3.6vw,38px)] font-extrabold">
+          Six years in the field before my first line of code
+        </h2>
+        <p className="mt-4 text-[17px] text-soft">
+          A degree in management, then sales agent and technical director at
+          Groupe ABDI: client briefs, electrical and home automation sites,
+          teams to coordinate, clients to keep. This past does not replace
+          technical skills. It decides what I do with them.
+        </p>
+      </div>
+
+      <dl className="overflow-hidden rounded-[14px] border border-line">
+        <div className="hidden grid-cols-2 gap-px bg-line sm:grid">
+          <p className="bg-raised px-5 py-3 text-[13px] font-semibold text-faint">
+            What I used to do
+          </p>
+          <p className="bg-raised px-5 py-3 text-[13px] font-semibold text-faint">
+            What it changes in a web project
           </p>
         </div>
 
-        <dl className="overflow-hidden rounded-xl border border-line">
-          <div className="hidden grid-cols-2 gap-px bg-line sm:grid">
-            <p className="bg-raised px-5 py-3 text-[13px] font-semibold text-faint">
-              Ce que je faisais
-            </p>
-            <p className="bg-raised px-5 py-3 text-[13px] font-semibold text-faint">
-              Ce que ça change dans un projet web
-            </p>
+        {rows.map((row) => (
+          <div
+            key={row.field}
+            className="grid gap-px border-t border-line bg-line sm:grid-cols-2"
+          >
+            <dt className="bg-surface px-5 py-4 font-display text-[16px] font-semibold">
+              {row.field}
+            </dt>
+            <dd className="bg-surface px-5 py-4 text-[15px] text-soft">
+              {row.code}
+            </dd>
           </div>
-
-          {rows.map((row) => (
-            <div
-              key={row.field}
-              className="grid gap-px border-t border-line bg-line sm:grid-cols-2"
-            >
-              <dt className="bg-surface px-5 py-4 font-display text-[16px] font-semibold">
-                {row.field}
-              </dt>
-              <dd className="bg-surface px-5 py-4 text-[15px] text-soft">
-                {row.code}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </div>
+        ))}
+      </dl>
     </section>
   );
 }

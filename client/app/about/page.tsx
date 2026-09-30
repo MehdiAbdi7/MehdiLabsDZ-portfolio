@@ -1,131 +1,115 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import CallToAction from "@/components/CallToAction";
+import FieldToCode from "@/components/FieldToCode";
+import Method from "@/components/Method";
+import SectionLabel from "@/components/SectionLabel";
 
 export const metadata: Metadata = {
-  title: "Parcours — Mehdi Abdi",
+  title: "About | Mehdi Abdi",
   description:
-    "Du commerce et de la gestion de chantier au développement full stack. Le parcours de Mehdi Abdi, développeur MERN à Alger.",
+    "From sales and site management to full stack development. The path of Mehdi Abdi, MERN developer in Algiers.",
 };
 
 const timeline = [
   {
-    period: "2018 – 2024",
-    title: "Agent commercial puis directeur technique, Groupe ABDI",
-    body: "Réponse aux cahiers des charges, chiffrage, coordination des équipes sur chantier et suivi qualité, en électricité et domotique. J'y ai appris à traduire ce qu'un client demande en ce dont il a réellement besoin.",
+    period: "2018 to 2024",
+    title: "Sales agent, then technical director, Groupe ABDI",
+    body: "Answering client briefs, pricing, coordinating teams on site and quality control, in electrical work and home automation. This is where I learned to turn what a client asks for into what they really need.",
   },
   {
     period: "2023",
-    title: "Premier site livré",
-    body: "HTML, CSS, JavaScript et Bootstrap sur mon temps libre, puis mise en ligne du site de SARL Home Connect Algérie, l'entreprise de matériel électrique que je cogérais avec mon frère. Premier projet en conditions réelles, au service d'une vraie activité commerciale.",
+    title: "First site shipped",
+    body: "HTML, CSS, JavaScript and Bootstrap in my free time, then the launch of the site of SARL Home Connect Algérie, the electrical equipment company I co-managed with my brother. My first project in real conditions, for a real business.",
   },
   {
     period: "2025",
-    title: "Formation full stack, GoMyCode",
-    body: "Stack MERN complet : React, Redux, Node.js, Express, MongoDB, Git. Une dizaine de projets d'entraînement pour pratiquer chaque brique de la stack.",
+    title: "Full stack training, GoMyCode",
+    body: "The full MERN stack: React, Redux, Node.js, Express, MongoDB, Git. About ten practice projects to work on each part of the stack.",
   },
   {
-    period: "2025 – 2026",
-    title: "Spécialisation Next.js et TypeScript",
-    body: "App Router, TypeScript strict, Redux Toolkit, validation Zod, temps réel avec Socket.io. Développement de Niwa Food, mon projet de fin de formation : une plateforme de commande multi-magasins de bout en bout.",
+    period: "2025 to 2026",
+    title: "Focus on Next.js and TypeScript",
+    body: "App Router, strict TypeScript, Redux Toolkit, Zod validation, real time with Socket.io. I built Niwa Food, my final training project: a multi-store ordering platform, end to end.",
   },
   {
     period: "2026",
-    title: "Nouveaux projets et recherche d'un premier poste",
-    body: "Refonte complète en Next.js et TypeScript du site de Home Connect Algérie, trois ans après sa première version en HTML. Développement de MB Food, une déclinaison de Niwa Food pour un restaurant de street food. Aujourd'hui, je cherche mon premier poste de développeur, idéalement en agence, pour enchaîner les projets et progresser au contact d'une équipe.",
+    title: "New projects and the search for a first role",
+    body: "Full rebuild in Next.js and TypeScript of the Home Connect Algérie site, three years after its first HTML version. Work on MB Food, a version of Niwa Food for a street food restaurant. Today I am looking for my first developer role, ideally in an agency, to work on many projects and grow with a team.",
   },
 ];
 
 const facts = [
-  { label: "Formation", value: "Licence en management, puis GoMyCode" },
+  { label: "Education", value: "Bachelor's degree in management, then GoMyCode" },
+  { label: "Status", value: "Looking for a first role, available now" },
   {
-    label: "Statut",
-    value: "En recherche d'un premier poste, disponible immédiatement",
+    label: "Languages",
+    value: "Arabic (native), French (fluent), English (intermediate)",
   },
-  { label: "Langues", value: "Français, arabe, anglais technique" },
-  { label: "Localisation", value: "Alger, télétravail possible" },
+  { label: "Location", value: "Algiers, remote possible" },
 ];
 
 export default function AboutPage() {
   return (
     <>
-      <section className="mx-auto max-w-6xl px-5 pb-14 pt-14">
-        <div className="grid items-start gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-          <div className="panel overflow-hidden">
-            <div className="relative aspect-[4/5] bg-raised">
-              <Image
-                src="/dev.jpg"
-                alt="Portrait de Mehdi Abdi"
-                fill
-                sizes="(max-width: 1024px) 100vw, 420px"
-                className="object-cover"
-                priority
-              />
-            </div>
-            <dl className="divide-y divide-line">
-              {facts.map((fact) => (
-                <div key={fact.label} className="px-5 py-3.5">
-                  <dt className="text-[13px] text-faint">{fact.label}</dt>
-                  <dd className="mt-0.5 text-[15px] font-medium">
-                    {fact.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-
+      <section className="mx-auto max-w-6xl px-5 pb-16 pt-14">
+        <div className="grid items-start gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
           <div>
-            <h1 className="max-w-[18ch] font-display text-[clamp(34px,5.4vw,56px)] font-extrabold">
-              J&apos;ai vendu et livré avant d&apos;écrire du code
+            <SectionLabel>About me</SectionLabel>
+            <h1 className="mt-3 max-w-[18ch] text-[clamp(34px,5.4vw,56px)] font-extrabold">
+              I sold and delivered before I wrote code
             </h1>
             <div className="mt-6 flex max-w-[64ch] flex-col gap-4 text-[17px] text-soft">
               <p>
-                Je m&apos;appelle Mehdi Abdi. Pendant six ans, mon métier a été
-                de comprendre ce qu&apos;un client voulait, de le chiffrer, puis
-                de le livrer avec une équipe — d&apos;abord comme commercial,
-                ensuite comme directeur technique sur des chantiers
-                d&apos;électricité et de domotique.
+                My name is Mehdi Abdi. For six years, my job was to understand
+                what a client wanted, price it, and deliver it with a team.
+                First as a sales agent, then as technical director on
+                electrical and home automation sites.
               </p>
               <p>
-                J&apos;ai basculé vers le développement web parce que je voyais
-                les mêmes problèmes revenir chez tous mes clients : des
-                commandes prises sur un carnet, des stocks tenus de tête, des
-                équipes qui se téléphonent pour savoir si un plat est prêt. Des
-                problèmes qui se règlent avec un logiciel.
+                I moved to web development because I kept seeing the same
+                problems at every client: orders written in a notebook, stock
+                kept from memory, teams calling each other to ask if a dish is
+                ready. Problems that software solves.
               </p>
               <p>
-                Aujourd&apos;hui je développe en MERN et TypeScript, et je
-                cherche l&apos;équipe où faire mes premières armes. Ce que
-                j&apos;apporte à une équipe, ce n&apos;est pas seulement du code
-                : c&apos;est quelqu&apos;un qui sait parler à un client sans
-                jargon, qui pose les bonnes questions avant de commencer, et qui
-                a déjà l&apos;habitude d&apos;être responsable d&apos;une
-                livraison.
+                Today I build with the MERN stack and TypeScript, and I am
+                looking for the team where I can start my career. What I bring
+                is not only code. I can talk to a client without jargon, I ask
+                the right questions before starting, and I am used to being
+                responsible for a delivery.
               </p>
             </div>
           </div>
+
+          <dl className="card divide-y divide-line">
+            {facts.map((fact) => (
+              <div key={fact.label} className="px-5 py-4">
+                <dt className="label text-faint">{fact.label}</dt>
+                <dd className="mt-1.5 text-[15px] font-medium">{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 
-      <section className="border-y border-line bg-surface">
+      <section className="inlay border-y border-line">
         <div className="mx-auto max-w-6xl px-5 py-16">
-          <h2 className="mb-9 font-display text-[clamp(28px,4vw,42px)] font-extrabold">
-            Le parcours
+          <SectionLabel>Timeline</SectionLabel>
+          <h2 className="mb-10 mt-3 text-[clamp(27px,3.6vw,38px)] font-extrabold">
+            My path
           </h2>
 
-          <ol className="border-l-2 border-line-strong pl-6 sm:pl-8">
+          <ol className="border-l border-gold pl-6 sm:pl-8">
             {timeline.map((item) => (
               <li key={item.period} className="relative pb-10 last:pb-0">
                 <span
                   aria-hidden="true"
-                  className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-surface bg-accent sm:-left-[39px]"
+                  className="absolute -left-[30px] top-1.5 h-3 w-3 rounded-full bg-gold sm:-left-[38px]"
                 />
                 <p className="font-mono text-[13px] text-faint">
                   {item.period}
                 </p>
-                <h3 className="mt-1.5 font-display text-[20px] font-bold">
-                  {item.title}
-                </h3>
+                <h3 className="mt-1.5 text-[20px] font-bold">{item.title}</h3>
                 <p className="mt-2 max-w-[68ch] text-[15px] text-soft">
                   {item.body}
                 </p>
@@ -135,6 +119,8 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <FieldToCode />
+      <Method />
       <CallToAction />
     </>
   );
