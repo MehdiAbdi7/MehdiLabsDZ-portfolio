@@ -1,72 +1,94 @@
 import Link from "next/link";
-import OrderBoard from "./OrderBoard";
+import type { IconType } from "react-icons";
+import { LuArrowUpRight, LuDownload } from "react-icons/lu";
+import {
+  SiGit,
+  SiMongodb,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
+import { profile } from "@/data/profile";
+import HeroTitle from "./HeroTitle";
+import HeroVisual from "./HeroVisual";
+import SectionLabel from "./SectionLabel";
 
-const facts = [
-  { label: "Basé à", value: "Alger" },
-  { label: "Recherche", value: "Premier poste en agence" },
-  { label: "Stack", value: "MERN en TypeScript" },
+const technologies: { name: string; Icon: IconType }[] = [
+  { name: "TypeScript", Icon: SiTypescript },
+  { name: "React", Icon: SiReact },
+  { name: "Next.js", Icon: SiNextdotjs },
+  { name: "Node.js", Icon: SiNodedotjs },
+  { name: "MongoDB", Icon: SiMongodb },
+  { name: "Tailwind CSS", Icon: SiTailwindcss },
+  { name: "Git", Icon: SiGit },
 ];
 
 export default function Hero() {
   return (
-    <section className="mx-auto max-w-6xl px-5 pb-16 pt-8">
-      <div className="grid items-start gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14">
+    <section className="mx-auto max-w-6xl px-5 pb-20 pt-10 lg:pt-16">
+      <div className="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
         {/* min-w-0 : sans lui, une colonne de grille ne descend jamais sous la
             largeur de son plus long mot, ce qui créait un scroll horizontal
             sur les très petits écrans. */}
         <div className="min-w-0">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-md border border-line bg-surface px-3 py-1.5 text-[13px] text-soft">
+          <p className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-[13px] text-soft">
             <span aria-hidden="true" className="dot dot-live" />
-            Disponible pour un premier poste
+            Open to a first role
           </p>
 
-          <h1 className="max-w-[16ch] font-display text-[clamp(30px,6.4vw,68px)] font-extrabold">
-            Je développe les applications qui font tourner un commerce.
-          </h1>
+          <SectionLabel className="mt-7">
+            Full stack developer · Algiers
+          </SectionLabel>
+
+          <HeroTitle
+            className="mt-3 font-display"
+            highlight="Mehdi"
+            lines={[
+              {
+                text: "Hi, I'm Mehdi.",
+                className: "text-[clamp(40px,7vw,68px)] font-extrabold",
+              },
+              {
+                text: "I build the apps that run a business.",
+                className: "mt-2 text-[clamp(25px,4.2vw,40px)] font-bold",
+              },
+            ]}
+          />
 
           <p className="mt-6 max-w-[54ch] text-[17px] text-soft">
-            Prise de commande, menu, cuisine, livraison, caisse. Je construis la
-            chaîne complète : le modèle de données, l&apos;API, et l&apos;écran
-            que l&apos;équipe utilise tous les jours. Avant de coder, j&apos;ai
-            passé six ans à vendre et à livrer des chantiers — je sais à quoi
-            ressemble un besoin mal exprimé et un délai qui glisse.
+            Ordering, menus, kitchen screens, delivery. I build the whole
+            chain: the data model, the API, and the screen the team uses every
+            day. Before writing code, I spent six years selling and delivering
+            projects on site.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/projects"
-              className="press rounded-[10px] bg-accent px-6 py-3.5 font-semibold text-on-accent"
-            >
-              Voir les projets
+            <Link href="/projects" className="btn btn-primary">
+              View my work
+              <LuArrowUpRight aria-hidden="true" className="btn-arrow" />
             </Link>
-            <a
-              href="/CV.pdf"
-              download
-              className="rounded-[10px] border border-line-strong px-6 py-3.5 font-semibold transition-colors hover:bg-raised"
-            >
-              Télécharger le CV
+            <a href={profile.cv} download className="btn btn-ghost">
+              {profile.cvLabel}
+              <LuDownload aria-hidden="true" />
             </a>
           </div>
 
-          <dl className="mt-12 grid grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-3">
-            {facts.map((fact) => (
-              <div key={fact.label} className="bg-surface px-4 py-3.5">
-                <dt className="text-[13px] text-faint">{fact.label}</dt>
-                <dd className="mt-0.5 font-display text-[15px] font-semibold">
-                  {fact.value}
-                </dd>
-              </div>
+          <SectionLabel className="mt-12 text-faint">
+            Technologies I work with
+          </SectionLabel>
+          <ul className="mt-4 flex flex-wrap gap-x-6 gap-y-4 text-[28px] text-soft">
+            {technologies.map(({ name, Icon }) => (
+              <li key={name} title={name}>
+                <Icon aria-hidden="true" />
+                <span className="sr-only">{name}</span>
+              </li>
             ))}
-          </dl>
+          </ul>
         </div>
 
-        <div className="min-w-0 lg:self-center">
-          <OrderBoard />
-          <p className="mt-3 text-[13px] text-faint">
-            Démonstration d&apos;un flux temps réel : une mise à jour envoyée
-            par un écran apparaît instantanément sur les autres.
-          </p>
-        </div>
+        <HeroVisual />
       </div>
     </section>
   );

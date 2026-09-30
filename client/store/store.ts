@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import themeReducer from "@/features/theme/themeSlice";
-import carouselReducer from "@/features/carousel/carouselSlice";
 import uiReducer from "@/features/ui/uiSlice";
 import projectFilterReducer from "@/features/projects/filterSlice";
 
@@ -10,7 +9,6 @@ export const makeStore = () =>
   configureStore({
     reducer: {
       theme: themeReducer,
-      carousel: carouselReducer,
       ui: uiReducer,
       projectFilter: projectFilterReducer,
     },
