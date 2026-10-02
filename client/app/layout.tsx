@@ -49,9 +49,24 @@ export const metadata: Metadata = {
 
 /* Exécuté avant le premier rendu : évite le flash au chargement quand le
    visiteur a choisi le thème clair. Sans choix enregistré, le site s'ouvre
-   en sombre. Volontairement minuscule et sans dépendance. */
+   en sombre. Volontairement minuscule et sans dépendance.
+
+   Il nettoie aussi le <head> : en production, Netlify y insère un
+   commentaire précédé d'un saut de ligne. React ne les a pas rendus, il
+   voit un écart à l'hydratation (erreur #418) et refait toute la page côté
+   client. Le script tourne après ce commentaire et avant React : il le
+   retire à temps. */
 const themeScript = `
 (function () {
+  var node = document.head.firstChild;
+  while (node) {
+    var next = node.nextSibling;
+    var isComment = node.nodeType === 8;
+    var isBlankText = node.nodeType === 3 && !node.nodeValue.trim();
+    if (isComment || isBlankText) document.head.removeChild(node);
+    node = next;
+  }
+
   try {
     var stored = localStorage.getItem("MehdiAbdi-theme");
     document.documentElement.dataset.theme =
