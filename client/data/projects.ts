@@ -71,7 +71,7 @@ export const projects: Project[] = [
     summary:
       "Online shop for electrical and lighting equipment: filterable catalogue, cart, and the order sent to the store through WhatsApp.",
     detail:
-      "E-commerce site in production for Home Connect Algérie. Next.js 16 as a static export, so it can run on shared hosting without a Node server. Filters and sorting live in the URL, so a search can be shared as a link. The cart stores only product ids: prices are read again from the catalogue at display time, never frozen in the browser. With no backend, the order leaves as a pre-filled WhatsApp message, with delivery fees calculated for the 58 wilayas depending on the delivery method. A full rebuild of the company's first site, first written in HTML, CSS and JavaScript.",
+      "E-commerce site built for Home Connect Algérie, which has since closed: the site stays online as a demo, and orders are no longer processed. Next.js 16 as a static export, so it runs on any static host without a Node server: first a shared hosting plan, now Vercel. Filters and sorting live in the URL, so a search can be shared as a link. The cart stores only product ids: prices are read again from the catalogue at display time, never frozen in the browser. With no backend, the order leaves as a pre-filled WhatsApp message, with delivery fees calculated for the 58 wilayas depending on the delivery method. A full rebuild of the company's first site, first written in HTML, CSS and JavaScript.",
     highlights: [
       "Rebuild of the first site I shipped in plain HTML",
       "Delivery priced for all 58 wilayas, home or pickup point",
@@ -86,11 +86,11 @@ export const projects: Project[] = [
       "Static export",
     ],
     category: "Frontend",
-    status: "live",
+    status: "demo",
     image: "/hero-hca-elec.webp",
     imageAlt: "Home page of the HCA ELEC shop, Home Connect Algérie",
     github: "https://github.com/MehdiAbdi7/HCA-ELEC",
-    demo: "https://hca-elec.com",
+    demo: "https://hca-elec.vercel.app",
     featured: true,
   },
   {
