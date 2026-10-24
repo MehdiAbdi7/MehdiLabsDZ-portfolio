@@ -23,13 +23,13 @@ const timeline = [
   },
   {
     period: "2025",
-    title: "Full stack training, GoMyCode",
-    body: "The full MERN stack: React, Redux, Node.js, Express, MongoDB, Git. About ten practice projects to work on each part of the stack.",
+    title: "Self-taught, alongside the business",
+    body: "Online courses on Cursa and Udemy in my free time, while co-managing Home Connect Algérie and keeping its site up to date. The more I learned, the more I wanted to make it my job, so I joined a full stack training.",
   },
   {
-    period: "2025 to 2026",
-    title: "Focus on Next.js and TypeScript",
-    body: "App Router, strict TypeScript, Redux Toolkit, Zod validation, real time with Socket.io. I built Niwa Food, my final training project: a multi-store ordering platform, end to end.",
+    period: "Feb to Sep 2026",
+    title: "Full stack training, GoMyCode",
+    body: "The full MERN stack: React, Redux, Node.js, Express, MongoDB, Git, then the Next.js App Router and strict TypeScript. About ten practice projects to work on each part of the stack, and Niwa Food as my final project: a multi-store ordering platform with real time (Socket.io), Zod validation and Redux Toolkit, built end to end.",
   },
   {
     period: "2026",
